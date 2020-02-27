@@ -1,4 +1,4 @@
-package neumont.edu.csc150.c.model;
+package neumont.edu.csc150.c.models;
 
 public class User {
     private String userName;

@@ -12,32 +12,11 @@ public class PersonalZooView {
         userIn = new BufferedReader(new InputStreamReader(System.in));
     }
 
-    public void displayMainMenu() {
-        System.out.println("Welcome to Personal Zoo!!!\r\n"+"Press 1 to Login\r\n" +"Press 2 to Sign up\r\n" +"To exit press 0\r\n");
-    }
-
-    public String promptUserEntryInput(String userinput) throws IOException {
-        showMessage("Enter input");
-        return readString(1);
+    public void displayMainMenu() throws IOException {
+        showMessage("Welcome to Personal Zoo!!!\r\n"+"Press 1 to Login\r\n" +"Press 2 to Sign up\r\n" +"To exit press 0\r\n");
     }
 
     public int getUserSelection(int min, int max) throws IOException {
-        while (true) {
-            String rawInput = userIn.readLine();
-            try {
-                int input = Integer.parseInt(rawInput);
-                if (input < min || input > max) {
-                    throw new NumberFormatException();
-                }
-                return input;
-            } catch (NumberFormatException ex) {
-                showError(String.format("You must enter an integer between %d and %d",
-                        min, max));
-            }
-        }
-    }
-
-    public int readInt(int min, int max) throws IOException {
         while (true) {
             String rawInput = userIn.readLine();
             try {
@@ -70,10 +49,6 @@ public class PersonalZooView {
 
     public void showError(String msg) {
         System.err.println(msg);
-    }
-
-    public String getStringInput() throws IOException {
-        return userIn.readLine();
     }
 
 
