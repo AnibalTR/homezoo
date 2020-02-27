@@ -5,7 +5,6 @@ import neumont.edu.csc150.c.models.User;
 import neumont.edu.csc150.c.view.PersonalZooView;
 
 import java.io.*;
-import java.time.LocalDate;
 
 public class PersonalZooController {
     private final static String usersFolder = "Users";
@@ -42,17 +41,17 @@ public class PersonalZooController {
     private void signup() throws IOException {
         User newUser = new User();
         int minNameLen = 3;
-        boolean userExists;
+        boolean userDoesNotExist;
         String userName;
 
         do{
             personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters", minNameLen));
             userName = personalZooUI.readString(minNameLen);
-            userExists = searchEntry(userName);
-            if (!userExists){
+            userDoesNotExist = searchEntry(userName);
+            if (!userDoesNotExist){
                 personalZooUI.showError("Username is already taken, please enter a different username");
             }
-        }while(!userExists);
+        }while(!userDoesNotExist);
          newUser.setUserName(userName);
         personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
 
@@ -64,7 +63,7 @@ public class PersonalZooController {
     }
 
     private void login() {
-        User oldUser = new User();
+        
 
     }
 
@@ -74,7 +73,7 @@ public class PersonalZooController {
 
     public void saveText(User user) throws FileNotFoundException {
         File file = new File(usersFolder,user.getUserName());
-        PrintStream outFile = new PrintStream(file);
+        PrintStream outFile = new PrintStream(file + ".txt");
         try{
             outFile.println(user.serialize());
         }
@@ -109,13 +108,13 @@ public class PersonalZooController {
 
         for (File file : files) {
             if (file.toString().substring(6).contentEquals(userName + ".txt")) {
-                return true;
+                return false;
             }
         }
 
 
 
-        return false;
+        return true;
     }
 
 }

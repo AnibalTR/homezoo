@@ -30,7 +30,7 @@ public class User {
 
     public String serialize(){
         return String.format("%s|%s",
-                this.getUserName());
+                this.getUserName(), this.getPassword());
     }
 
     public void deserialize(String line) {
