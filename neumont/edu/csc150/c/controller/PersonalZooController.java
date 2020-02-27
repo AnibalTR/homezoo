@@ -11,7 +11,7 @@ public class PersonalZooController {
     private PersonalZooView personalZooUI = new PersonalZooView();
     private User newUser = new User();
 
-    public PersonalZooController(){
+    public PersonalZooController() {
         File folder = new File(usersFolder);
         if(!folder.exists()){
             folder.mkdir();
