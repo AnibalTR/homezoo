@@ -1,6 +1,40 @@
 package neumont.edu.csc150.c.models;
 
 public class AnimalTypes {
+    public enum AllAnimals{
+        SCARLET_MACAW,
+        GREY_PARROT,
+        PALLID_PARROT,
+        BALL_PYTHON,
+        CORN_SNAKE,
+        ROSY_BOA,
+        SPINY_SOFTSHELL_TURTLE,
+        RED_EARED_SLIDER,
+        BOX_TURTLE,
+        BEARDED_DRAGON,
+        LEOPARD_GECKO,
+        IGUANAS,
+        FERRET,
+        RAT,
+        SKUNK,
+        HEDGEHOG,
+        FENNEC_FOX,
+        RACCOON,
+        BEAR,
+        ENGLISH_BERNARD,
+        GERMAN_SHEPARD,
+        YORKSHIRE_TERRIER,
+        PIT_BULL,
+        GREYHOUND,
+        SPHINX,
+        PERSIAN,
+        GARFIELD,
+        KOREAN_BOBTAIL,
+        CROW,
+        TOUCAN,
+        PIGEON,
+        EMPTY
+    }
     public enum AnimalSpecies {
         REPTILE,
         MAMMAL,

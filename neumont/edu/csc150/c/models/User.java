@@ -1,9 +1,13 @@
 package neumont.edu.csc150.c.models;
 
+import java.util.List;
+
 public class User {
     private String userName;
-    private String Password;
-     
+    private String Password;     
+    private List<Environment> environments;
+    private double money;
+    private List<Food> food;
 
     public String getUserName() {
         return userName;

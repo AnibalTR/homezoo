@@ -32,13 +32,13 @@ public class PersonalZooController {
                     login();
                     break;
                 case 2:
-                    signup();
+                    signUp();
                     break;
             }
         } while (!exitRequested);
     }
 
-    private void signup() throws IOException {
+    private void signUp() throws IOException {
         User newUser = new User();
         int minNameLen = 3;
         boolean userDoesNotExist;
@@ -63,7 +63,6 @@ public class PersonalZooController {
     }
 
     private void login() {
-
 
     }
 
