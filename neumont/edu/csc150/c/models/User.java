@@ -3,6 +3,7 @@ package neumont.edu.csc150.c.models;
 public class User {
     private String userName;
     private String Password;
+     
 
     public String getUserName() {
         return userName;
