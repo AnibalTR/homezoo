@@ -1,7 +1,7 @@
 package neumont.edu.csc150.c.models;
 
 public class Pet implements PetInterface {
-
+ 
     public enum Colors{
         BLACK,
         WHITE,
