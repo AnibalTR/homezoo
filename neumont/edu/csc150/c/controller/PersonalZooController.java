@@ -1,10 +1,13 @@
 package neumont.edu.csc150.c.controller;
 
 import neumont.edu.csc150.c.models.Encryption;
+import neumont.edu.csc150.c.models.Environment;
+import neumont.edu.csc150.c.models.Food;
 import neumont.edu.csc150.c.models.User;
 import neumont.edu.csc150.c.view.PersonalZooView;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class PersonalZooController {
     private final static String usersFolder = "Users";
@@ -39,7 +42,7 @@ public class PersonalZooController {
     }
 
     private void signUp() throws IOException {
-        User newUser = new User();
+//        User newUser = new User();
         int minNameLen = 3;
         boolean userDoesNotExist;
         String userName;
@@ -52,17 +55,40 @@ public class PersonalZooController {
                 personalZooUI.showError("Username is already taken, please enter a different username");
             }
         }while(!userDoesNotExist);
-         newUser.setUserName(userName);
         personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
-
         String password = personalZooUI.readString(minNameLen);
         String epw = encryptor.encrypt(password);
-        newUser.setUserName(userName);
-        newUser.setPassword(epw);
+        User newUser = new User(userName, epw, 100.00, new ArrayList<Environment>(), new ArrayList<Food>());
         saveText(newUser);
     }
 
-    private void login() {
+    private void login() throws IOException {
+        boolean userDoesNotExist;
+        boolean credentialsMatch = false;
+        String userName;
+        String password;
+        int minNameLen = 3;
+
+        do{
+            personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters", minNameLen));
+            userName = personalZooUI.readString(minNameLen);
+            userDoesNotExist = searchEntry(userName);
+            if (!userDoesNotExist){
+                personalZooUI.showError("We could not find that user, please enter a different username");
+            }
+
+            personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
+            password = personalZooUI.readString(3);
+            User returnUser = loadJournal(userName);
+
+            if (returnUser != null) {
+                credentialsMatch = returnUser.getPassword() == encryptor.encrypt(password);
+            } else {
+                personalZooUI.showError("No users found with these credentials, please check username and password");
+            }
+        }while(!userDoesNotExist && !credentialsMatch);
+
+        System.out.println("success");
 
     }
 
@@ -82,7 +108,7 @@ public class PersonalZooController {
     }
 
     public User loadJournal(String userFileName) throws IOException {
-        BufferedReader inFile = new BufferedReader(new InputStreamReader(new FileInputStream(userFileName)));
+        BufferedReader inFile = new BufferedReader(new InputStreamReader(new FileInputStream("Users/" + userFileName + ".txt")));
         try {
             String content = "";
             while (inFile.ready()){
@@ -111,9 +137,9 @@ public class PersonalZooController {
             }
         }
 
-
-
         return true;
     }
+
+
 
 }

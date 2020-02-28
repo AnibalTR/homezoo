@@ -29,15 +29,19 @@ public class Environment {
         this.animalsCage = animalsCage;
     }
 
-    @Override
-    public String toString(){
+    public String serialize() {
         String returnString;
         if(getPet() == null){
             returnString = getAnimalsCage().toString()+"\\,";
         }
         else{
-            returnString = getPet().toString()+"\\,";
+            returnString = getPet().serialize()+"\\,";
         }
         return returnString;
     }
+
+//    @Override
+//    public String toString(){
+//
+//    }
 }

@@ -27,6 +27,10 @@ public class Food {
         this.type = type;
     }
 
+    public String serialize() {
+        return String.format("%d<%s", this.getAmountOfFood(), this.getFoodType());
+    }
+
     @Override
     public String toString() {
         return String.format("Amount of Food : %d/3\r\nFood is suitable for : %s",
