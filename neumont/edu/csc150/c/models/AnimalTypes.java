@@ -1,6 +1,14 @@
 package neumont.edu.csc150.c.models;
 
 public class AnimalTypes {
+
+    public enum Colors{
+        BLACK,
+        WHITE,
+        GREY,
+        ORANGE
+    }
+
     public enum AllAnimals{
         SCARLET_MACAW,
         GREY_PARROT,

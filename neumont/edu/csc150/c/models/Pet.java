@@ -2,15 +2,9 @@ package neumont.edu.csc150.c.models;
 
 public class Pet implements PetInterface {
 
-    public enum Colors{
-        BLACK,
-        WHITE,
-        GREY,
-        ORANGE
-    }
     private String name;
     private AnimalTypes.AllAnimals animalType;
-    private Colors color;
+    private AnimalTypes.Colors color;
     private int hunger;
     private int attention;
     private int messiness;
@@ -24,7 +18,7 @@ public class Pet implements PetInterface {
     public Pet() {
     }
 
-    public Pet(String name, AnimalTypes.AllAnimals animalType, Colors color, int hunger, int attention, int messiness, int stars, int lastFeedingTime, int lastPlayTime, int lastCleaning, int lastSleepTime, boolean isAsleep) {
+    public Pet(String name, AnimalTypes.AllAnimals animalType, AnimalTypes.Colors color, int hunger, int attention, int messiness, int stars, int lastFeedingTime, int lastPlayTime, int lastCleaning, int lastSleepTime, boolean isAsleep) {
         this.name = name;
         this.animalType = animalType;
         this.color = color;
@@ -55,11 +49,11 @@ public class Pet implements PetInterface {
         this.animalType = animalType;
     }
 
-    public Colors getColor() {
+    public AnimalTypes.Colors getColor() {
         return color;
     }
 
-    public void setColor(Colors color) {
+    public void setColor(AnimalTypes.Colors color) {
         this.color = color;
     }
 

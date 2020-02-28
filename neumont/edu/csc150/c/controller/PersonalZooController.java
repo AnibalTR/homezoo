@@ -92,10 +92,6 @@ public class PersonalZooController {
 
     }
 
-    private void enterCredentials() {
-
-    }
-
     public void saveText(User user) throws FileNotFoundException {
         File file = new File(usersFolder,user.getUserName());
         PrintStream outFile = new PrintStream(file + ".txt");
@@ -133,11 +129,11 @@ public class PersonalZooController {
 
         for (File file : files) {
             if (file.toString().substring(6).contentEquals(userName + ".txt")) {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
 
