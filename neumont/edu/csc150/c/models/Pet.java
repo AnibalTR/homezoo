@@ -8,6 +8,8 @@ public class Pet implements PetInterface {
         GREY,
         ORANGE
     }
+    private String name;
+    private AnimalTypes.AllAnimals animalType;
     private Colors color;
     private int hunger;
     private int attention;
@@ -22,7 +24,9 @@ public class Pet implements PetInterface {
     public Pet() {
     }
 
-    public Pet(Colors color, int hunger, int attention, int messiness, int stars, int lastFeedingTime, int lastPlayTime, int lastCleaning, int lastSleepTime, boolean isAsleep) {
+    public Pet(String name, AnimalTypes.AllAnimals animalType, Colors color, int hunger, int attention, int messiness, int stars, int lastFeedingTime, int lastPlayTime, int lastCleaning, int lastSleepTime, boolean isAsleep) {
+        this.name = name;
+        this.animalType = animalType;
         this.color = color;
         this.hunger = hunger;
         this.attention = attention;
@@ -33,6 +37,22 @@ public class Pet implements PetInterface {
         this.lastCleaning = lastCleaning;
         this.lastSleepTime = lastSleepTime;
         this.isAsleep = isAsleep;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public AnimalTypes.AllAnimals getAnimalType() {
+        return animalType;
+    }
+
+    public void setAnimalType(AnimalTypes.AllAnimals animalType) {
+        this.animalType = animalType;
     }
 
     public Colors getColor() {
@@ -130,9 +150,10 @@ public class Pet implements PetInterface {
 
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s<%d<%d<%d<%d<%d<%d<%d<%d<%s",
+    public String serialize(){
+        return String.format("%s<%s<%s<%d<%d<%d<%d<%d<%d<%d<%d<%s",
+                this.getName(),
+                this.getAnimalType(),
                 this.getColor(),
                 this.getHunger(),
                 this.getAttention(),
@@ -142,6 +163,19 @@ public class Pet implements PetInterface {
                 this.getLastPlayTime(),
                 this.getLastCleaning(),
                 this.getLastSleepTime(),
+                this.isAsleep());
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Pet Name: %s\r\nAnimal Type: %s\r\nColor: %s\r\nHunger level - %d/10\r\nAttention Level - %d/10\r\nMessiness Level - %d/10\r\nOver All Comfort: %d/5\r\nIs Asleep: %s",
+                this.getName(),
+                this.getAnimalType(),
+                this.getColor(),
+                this.getHunger(),
+                this.getAttention(),
+                this.getMessiness(),
+                this.getStars(),
                 this.isAsleep());
     }
 }
