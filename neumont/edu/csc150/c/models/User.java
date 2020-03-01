@@ -96,6 +96,20 @@ public class User {
     private void deserializeFood(String serializedFood) {
         String[] pieces = serializedFood.split(",");
 
+        for (int i = 0; i < pieces.length ; i++) {
+            AnimalTypes.AnimalFoodType foodType = null;
+            String[] foodPieces = pieces[i].split("<");
+            for (int j = 0; j < AnimalTypes.AnimalFoodType.values().length; j++) {
+                if(foodPieces[1].equals(AnimalTypes.AnimalFoodType.values()[j].toString())){
+                    foodType = AnimalTypes.AnimalFoodType.values()[j];
+                }
+            }
+            this.food.add(new Food(Integer.parseInt(foodPieces[0]), foodType));
+
+        }
+//        Contains all the food
+//        splits up the food into
+
         
     }
 
