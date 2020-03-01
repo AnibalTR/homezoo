@@ -6,9 +6,9 @@ import java.util.List;
 public class User {
     private String userName;
     private String Password;
-    private List<Environment> environments;
+    private List<Environment> environments = new ArrayList<>();
     private double money;
-    private List<Food> food;
+    private List<Food> food = new ArrayList<>();
 
     public User() {}
 
@@ -85,12 +85,18 @@ public class User {
                 environments.add(new Environment(new Pet(newPetArr[0], AnimalTypes.AllAnimals.valueOf(newPetArr[1]), AnimalTypes.Colors.valueOf(newPetArr[2]), Integer.parseInt(newPetArr[3]), Integer.parseInt(newPetArr[4]), Integer.parseInt(newPetArr[5]), Integer.parseInt(newPetArr[6]), Integer.parseInt(newPetArr[7]), Integer.parseInt(newPetArr[8]), Integer.parseInt(newPetArr[9]), Integer.parseInt(newPetArr[10]), newPetArr[11].equals("true")), AnimalTypes.AllAnimals.valueOf(newPetArr[1])));
             } else {
                 for (int j = 0; j < AnimalTypes.AllAnimals.values().length; j++) {
-                    if (pieces[i] == AnimalTypes.AllAnimals.values()[j].toString()) {
+                    if (pieces[i].equals(AnimalTypes.AllAnimals.values()[j].toString())) {
                         environments.add(new Environment(null, AnimalTypes.AllAnimals.values()[j]));
                     }
                 }
             }
         }
+    }
+
+    private void deserializeFood(String serializedFood) {
+        String[] pieces = serializedFood.split(",");
+
+        
     }
 
     private String iterateSerializeFood() {
@@ -102,7 +108,7 @@ public class User {
     }
 
     public String serialize(){
-        return String.format("%s|%s|%d|%s|%s|%s",
+        return String.format("%s|%s|%d|%s|%s",
                 this.getUserName(),
                 this.getPassword(),
                 this.getMoney(),

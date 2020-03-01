@@ -86,7 +86,7 @@ public class PersonalZooController {
                 personalZooUI.showError("No users found with these credentials, please check username and password");
             }
         }while(!userDoesNotExist && !credentialsMatch);
-        System.out.println(returnUser.getEnvironments());
+        System.out.println(returnUser.getEnvironments().size());
 
         System.out.println("success");
     }
