@@ -9,16 +9,16 @@ public class Pet implements PetInterface {
     private int attention;
     private int messiness;
     private int stars;
-    private int lastFeedingTime;
-    private int lastPlayTime;
-    private int lastCleaning;
-    private int lastSleepTime;
+    private long lastFeedingTime;
+    private long lastPlayTime;
+    private long lastCleaning;
+    private long lastSleepTime;
     private boolean isAsleep;
 
     public Pet() {
     }
 
-    public Pet(String name, AnimalTypes.AllAnimals animalType, AnimalTypes.Colors color, int hunger, int attention, int messiness, int stars, int lastFeedingTime, int lastPlayTime, int lastCleaning, int lastSleepTime, boolean isAsleep) {
+    public Pet(String name, AnimalTypes.AllAnimals animalType, AnimalTypes.Colors color, int hunger, int attention, int messiness, int stars, long lastFeedingTime, long lastSleepTime, long lastCleaning, long lastPlayTime, boolean isAsleep) {
         this.name = name;
         this.animalType = animalType;
         this.color = color;
@@ -89,31 +89,31 @@ public class Pet implements PetInterface {
         this.stars = stars;
     }
 
-    public int getLastFeedingTime() {
+    public long getLastFeedingTime() {
         return lastFeedingTime;
     }
 
-    public void setLastFeedingTime(int lastFeedingTime) {
+    public void setLastFeedingTime(long lastFeedingTime) {
         this.lastFeedingTime = lastFeedingTime;
     }
 
-    public int getLastPlayTime() {
+    public long getLastPlayTime() {
         return lastPlayTime;
     }
 
-    public void setLastPlayTime(int lastPlayTime) {
+    public void setLastPlayTime(long lastPlayTime) {
         this.lastPlayTime = lastPlayTime;
     }
 
-    public int getLastCleaning() {
+    public long getLastCleaning() {
         return lastCleaning;
     }
 
-    public void setLastCleaning(int lastCleaning) {
+    public void setLastCleaning(long lastCleaning) {
         this.lastCleaning = lastCleaning;
     }
 
-    public int getLastSleepTime() {
+    public long getLastSleepTime() {
         return lastSleepTime;
     }
 

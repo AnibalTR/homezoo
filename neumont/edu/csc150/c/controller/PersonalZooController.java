@@ -87,7 +87,7 @@ public class PersonalZooController {
             }
         }while(!userDoesNotExist && !credentialsMatch);
         System.out.println(returnUser.getEnvironments().size());
-
+        System.out.println(returnUser.getFood().size());
         System.out.println("success");
     }
 

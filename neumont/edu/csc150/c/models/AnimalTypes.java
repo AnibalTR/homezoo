@@ -21,7 +21,7 @@ public class AnimalTypes {
         BOX_TURTLE,
         BEARDED_DRAGON,
         LEOPARD_GECKO,
-        IGUANAS,
+        IGUANA,
         FERRET,
         RAT,
         SKUNK,
@@ -138,4 +138,6 @@ public class AnimalTypes {
         RODENT,
         FENNEC_FOX
     }
+
+
 }

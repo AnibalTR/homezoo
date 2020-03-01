@@ -82,7 +82,7 @@ public class User {
         for (int i = 0; i < pieces.length; i++) {
             if (pieces[i].contains("<")) {
                 String[] newPetArr = pieces[i].split("<");
-                environments.add(new Environment(new Pet(newPetArr[0], AnimalTypes.AllAnimals.valueOf(newPetArr[1]), AnimalTypes.Colors.valueOf(newPetArr[2]), Integer.parseInt(newPetArr[3]), Integer.parseInt(newPetArr[4]), Integer.parseInt(newPetArr[5]), Integer.parseInt(newPetArr[6]), Integer.parseInt(newPetArr[7]), Integer.parseInt(newPetArr[8]), Integer.parseInt(newPetArr[9]), Integer.parseInt(newPetArr[10]), newPetArr[11].equals("true")), AnimalTypes.AllAnimals.valueOf(newPetArr[1])));
+                environments.add(new Environment(new Pet(newPetArr[0], AnimalTypes.AllAnimals.valueOf(newPetArr[1]), AnimalTypes.Colors.valueOf(newPetArr[2]), Integer.parseInt(newPetArr[3]), Integer.parseInt(newPetArr[4]), Integer.parseInt(newPetArr[5]), Integer.parseInt(newPetArr[6]), Integer.parseInt(newPetArr[7]), Integer.parseInt(newPetArr[10]), Integer.parseInt(newPetArr[9]), Integer.parseInt(newPetArr[8]), newPetArr[11].equals("true")), AnimalTypes.AllAnimals.valueOf(newPetArr[1])));
             } else {
                 for (int j = 0; j < AnimalTypes.AllAnimals.values().length; j++) {
                     if (pieces[i].equals(AnimalTypes.AllAnimals.values()[j].toString())) {
@@ -105,12 +105,7 @@ public class User {
                 }
             }
             this.food.add(new Food(Integer.parseInt(foodPieces[0]), foodType));
-
         }
-//        Contains all the food
-//        splits up the food into
-
-        
     }
 
     private String iterateSerializeFood() {
@@ -136,5 +131,6 @@ public class User {
         this.setPassword(pieces[1].trim());
         this.setMoney(Double.parseDouble(pieces[2].trim()));
         this.deserializeEnvironment(pieces[3].trim());
+        this.deserializeFood(pieces[4].trim());
     }
 }
