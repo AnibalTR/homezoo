@@ -68,7 +68,7 @@ public class PersonalZooController {
         String userName;
         String password;
         int minNameLen = 3;
-
+        User returnUser;
         do{
             personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters", minNameLen));
             userName = personalZooUI.readString(minNameLen);
@@ -79,17 +79,16 @@ public class PersonalZooController {
 
             personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
             password = personalZooUI.readString(3);
-            User returnUser = loadJournal(userName);
-
+            returnUser = loadJournal(userName);
             if (returnUser != null) {
                 credentialsMatch = returnUser.getPassword() == encryptor.encrypt(password);
             } else {
                 personalZooUI.showError("No users found with these credentials, please check username and password");
             }
         }while(!userDoesNotExist && !credentialsMatch);
+        System.out.println(returnUser.getEnvironments());
 
         System.out.println("success");
-
     }
 
     public void saveText(User user) throws FileNotFoundException {
