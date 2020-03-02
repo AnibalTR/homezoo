@@ -13,6 +13,7 @@ public class PersonalZooController {
     private final static String usersFolder = "Users";
     private PersonalZooView personalZooUI = new PersonalZooView();
     private Encryption encryptor = new Encryption();
+    private User newUser;
 
     public PersonalZooController() {
         File folder = new File(usersFolder);
@@ -24,6 +25,7 @@ public class PersonalZooController {
     public void run() throws IOException {
         boolean exitRequested = false;
         do {
+//            System.out.println(newUser == null ? "hello" : newUser.serialize());
             personalZooUI.displayMainMenu();
             int selection = personalZooUI.getUserSelection(0, 2);
             switch(selection){
@@ -33,16 +35,21 @@ public class PersonalZooController {
                     break;
                 case 1:
                     login();
+                    play();
                     break;
                 case 2:
                     signUp();
+                    play();
                     break;
             }
         } while (!exitRequested);
     }
 
+    private void play() {
+
+    }
+
     private void signUp() throws IOException {
-//        User newUser = new User();
         int minNameLen = 3;
         boolean userDoesNotExist;
         String userName;
@@ -60,28 +67,25 @@ public class PersonalZooController {
         personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
         String password = personalZooUI.readString(minNameLen);
         String epw = encryptor.encrypt(password);
-        User newUser = new User(userName, epw, 100.00, new ArrayList<Environment>(), new ArrayList<Food>());
+        newUser = new User(userName, epw, 100.00, new ArrayList<Environment>(), new ArrayList<Food>());
         saveText(newUser);
     }
 
     private void login() throws IOException {
-        boolean userRequestedExit = false;
         boolean userNamePasses = false;
         boolean userPWPasses = false;
         boolean credentialsMatch = false;
         int minNameLen = 3;
         String userName = "";
         String password;
-        User returnUser;
 
-        do {
-
-            while (!userNamePasses) {
+        while (credentialsMatch == false) {
+            while (userNamePasses == false) {
                 personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters\r\nTo exit type 'exit'", minNameLen));
                 userName = personalZooUI.readString(minNameLen);
 
-                if (userName.toLowerCase() == "exit") {
-                    userRequestedExit = true;
+                if (userName.toLowerCase().equals("exit")) {
+                    return;
                 }
 
                 userNamePasses = searchEntry(userName);
@@ -90,57 +94,25 @@ public class PersonalZooController {
                 }
             }
 
-            do {
+            while (userPWPasses == false) {
                 personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters\r\n" +
                         "To exit type 'exit'", minNameLen));
                 password = personalZooUI.readString(3);
-
-                if (password.toLowerCase() == "exit") {
-                    userRequestedExit = true;
+                System.out.println(userName);
+                if (password.toLowerCase().equals("exit")) {
+                    return;
                 }
 
-                returnUser = loadJournal(userName);
+                newUser = loadJournal(userName);
 
-                if (returnUser != null) {
-                    credentialsMatch = returnUser.getPassword().equals(encryptor.encrypt(password));
+                if (newUser != null) {
+                    userPWPasses = newUser.getPassword().equals(encryptor.encrypt(password));
                 } else {
                     personalZooUI.showError("No users found with these credentials, please check username and password");
                 }
-            } while (!credentialsMatch);
-
-        } while (!userRequestedExit || !credentialsMatch);
-
-
-
-
-
-//        boolean userDoesNotExist;
-//        boolean credentialsMatch = false;
-//        String userName;
-//        String password = "";
-//        int minNameLen = 3;
-//        User returnUser;
-//        do{
-//            personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters", minNameLen));
-//            userName = personalZooUI.readString(minNameLen);
-//            userDoesNotExist = searchEntry(userName);
-//            if (!userDoesNotExist){
-//                personalZooUI.showError("We could not find that user, please enter a different username");
-//            }
-//            while (userDoesNotExist) {
-//                personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
-//                password = personalZooUI.readString(3);
-//                returnUser = loadJournal(userName);
-//            }
-//            if (returnUser != null) {
-//                credentialsMatch = returnUser.getPassword() == encryptor.encrypt(password);
-//            } else {
-//                personalZooUI.showError("No users found with these credentials, please check username and password");
-//            }
-//        }while(!userDoesNotExist && !credentialsMatch);
-//        System.out.println(returnUser.getEnvironments().size());
-//        System.out.println(returnUser.getFood().size());
-//        System.out.println("success");
+            }
+            credentialsMatch = true;
+        }
     }
 
     public void saveText(User user) throws FileNotFoundException {
@@ -170,7 +142,6 @@ public class PersonalZooController {
         finally {
             inFile.close();
         }
-
         return null;
     }
 
@@ -183,10 +154,6 @@ public class PersonalZooController {
                 return true;
             }
         }
-
         return false;
     }
-
-
-
 }
