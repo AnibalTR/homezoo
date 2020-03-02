@@ -16,6 +16,10 @@ public class  PersonalZooView {
         showMessage("Welcome to Personal Zoo!!!\r\n"+"Press 1 to Login\r\n" +"Press 2 to Sign up\r\n" +"To exit press 0\r\n");
     }
 
+    public void displayPlayMenu() {
+        showMessage("[1] Go To Store\r\n[2] View Inventory\r\n[3] Take Care of Pets\r\n[0] Save and Exit");
+    }
+
     public int getUserSelection(int min, int max) throws IOException {
         while (true) {
             String rawInput = userIn.readLine();
@@ -49,6 +53,10 @@ public class  PersonalZooView {
 
     public void showError(String msg) {
         System.err.println(msg);
+    }
+
+    public void displayViewInventoryMenu() {
+        showMessage("[1] View Pets and Environments\r\n[2] View Food Supply\r\n[0] Back");
     }
 
 

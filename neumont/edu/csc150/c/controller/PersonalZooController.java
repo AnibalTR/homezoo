@@ -25,7 +25,6 @@ public class PersonalZooController {
     public void run() throws IOException {
         boolean exitRequested = false;
         do {
-//            System.out.println(newUser == null ? "hello" : newUser.serialize());
             personalZooUI.displayMainMenu();
             int selection = personalZooUI.getUserSelection(0, 2);
             switch(selection){
@@ -45,7 +44,60 @@ public class PersonalZooController {
         } while (!exitRequested);
     }
 
-    private void play() {
+    private void play() throws IOException {
+        personalZooUI.displayPlayMenu();
+        int userInput = personalZooUI.getUserSelection(0, 3);
+
+        switch(userInput) {
+            case 0:
+                saveText(newUser);
+                personalZooUI.showMessage("Saving and Exiting...");
+                System.exit(0);
+                break;
+            case 1:
+                goToStore();
+                break;
+            case 2:
+                viewInventory();
+                break;
+            case 3:
+//                managePets();
+                break;
+        }
+    }
+
+    private boolean viewInventory() throws IOException {
+        personalZooUI.displayViewInventoryMenu();
+        int userInput = personalZooUI.getUserSelection(0, 2);
+
+        switch (userInput) {
+            case 0:
+                return true;
+            case 1:
+                viewPetStats();
+                break;
+            case 2:
+                viewFoodSupply();
+                break;
+        }
+        return true;
+    }
+
+    private void viewFoodSupply() {
+        
+    }
+
+    private void viewPetStats() {
+        for (int i = 0; i < newUser.getEnvironments().size(); i++) {
+            if (newUser.getEnvironments().get(i).getPet() == null) {
+                personalZooUI.showMessage(String.format("[%d] Environment Suitable for : %s", i + 1, newUser.getEnvironments().get(i).getAnimalsCage()));
+            } else {
+                personalZooUI.showMessage(String.format("[%d] %s", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
+            }
+        }
+    }
+
+    private void goToStore() {
 
     }
 
