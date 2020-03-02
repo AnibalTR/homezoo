@@ -117,7 +117,7 @@ public class User {
     }
 
     public String serialize(){
-        return String.format("%s|%s|%d|%s|%s",
+        return String.format("%s|%s|%f|%s|%s|",
                 this.getUserName(),
                 this.getPassword(),
                 this.getMoney(),
@@ -130,7 +130,12 @@ public class User {
         this.setUserName(pieces[0].trim());
         this.setPassword(pieces[1].trim());
         this.setMoney(Double.parseDouble(pieces[2].trim()));
-        this.deserializeEnvironment(pieces[3].trim());
-        this.deserializeFood(pieces[4].trim());
+
+        if (pieces[3].length() > 1) {
+            this.deserializeEnvironment(pieces[3].trim());
+        }
+        if (pieces[4].length() > 1) {
+            this.deserializeFood(pieces[4].trim());
+        }
     }
 }

@@ -52,9 +52,11 @@ public class PersonalZooController {
             userName = personalZooUI.readString(minNameLen);
             userDoesNotExist = searchEntry(userName);
             if (!userDoesNotExist){
-                personalZooUI.showError("Username is already taken, please enter a different username");
+                personalZooUI.showMessage("User created");
+            } else {
+                personalZooUI.showError("Username is taken");
             }
-        }while(!userDoesNotExist);
+        }while(userDoesNotExist);
         personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
         String password = personalZooUI.readString(minNameLen);
         String epw = encryptor.encrypt(password);
@@ -63,32 +65,82 @@ public class PersonalZooController {
     }
 
     private void login() throws IOException {
-        boolean userDoesNotExist;
+        boolean userRequestedExit = false;
+        boolean userNamePasses = false;
+        boolean userPWPasses = false;
         boolean credentialsMatch = false;
-        String userName;
-        String password;
         int minNameLen = 3;
+        String userName = "";
+        String password;
         User returnUser;
-        do{
-            personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters", minNameLen));
-            userName = personalZooUI.readString(minNameLen);
-            userDoesNotExist = searchEntry(userName);
-            if (!userDoesNotExist){
-                personalZooUI.showError("We could not find that user, please enter a different username");
+
+        do {
+
+            while (!userNamePasses) {
+                personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters\r\nTo exit type 'exit'", minNameLen));
+                userName = personalZooUI.readString(minNameLen);
+
+                if (userName.toLowerCase() == "exit") {
+                    userRequestedExit = true;
+                }
+
+                userNamePasses = searchEntry(userName);
+                if (!userNamePasses){
+                    personalZooUI.showError("We could not find that user, please enter a different username");
+                }
             }
 
-            personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
-            password = personalZooUI.readString(3);
-            returnUser = loadJournal(userName);
-            if (returnUser != null) {
-                credentialsMatch = returnUser.getPassword() == encryptor.encrypt(password);
-            } else {
-                personalZooUI.showError("No users found with these credentials, please check username and password");
-            }
-        }while(!userDoesNotExist && !credentialsMatch);
-        System.out.println(returnUser.getEnvironments().size());
-        System.out.println(returnUser.getFood().size());
-        System.out.println("success");
+            do {
+                personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters\r\n" +
+                        "To exit type 'exit'", minNameLen));
+                password = personalZooUI.readString(3);
+
+                if (password.toLowerCase() == "exit") {
+                    userRequestedExit = true;
+                }
+
+                returnUser = loadJournal(userName);
+
+                if (returnUser != null) {
+                    credentialsMatch = returnUser.getPassword().equals(encryptor.encrypt(password));
+                } else {
+                    personalZooUI.showError("No users found with these credentials, please check username and password");
+                }
+            } while (!credentialsMatch);
+
+        } while (!userRequestedExit || !credentialsMatch);
+
+
+
+
+
+//        boolean userDoesNotExist;
+//        boolean credentialsMatch = false;
+//        String userName;
+//        String password = "";
+//        int minNameLen = 3;
+//        User returnUser;
+//        do{
+//            personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters", minNameLen));
+//            userName = personalZooUI.readString(minNameLen);
+//            userDoesNotExist = searchEntry(userName);
+//            if (!userDoesNotExist){
+//                personalZooUI.showError("We could not find that user, please enter a different username");
+//            }
+//            while (userDoesNotExist) {
+//                personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
+//                password = personalZooUI.readString(3);
+//                returnUser = loadJournal(userName);
+//            }
+//            if (returnUser != null) {
+//                credentialsMatch = returnUser.getPassword() == encryptor.encrypt(password);
+//            } else {
+//                personalZooUI.showError("No users found with these credentials, please check username and password");
+//            }
+//        }while(!userDoesNotExist && !credentialsMatch);
+//        System.out.println(returnUser.getEnvironments().size());
+//        System.out.println(returnUser.getFood().size());
+//        System.out.println("success");
     }
 
     public void saveText(User user) throws FileNotFoundException {
