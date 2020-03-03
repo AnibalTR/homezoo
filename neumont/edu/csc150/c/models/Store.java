@@ -8,97 +8,97 @@ public class Store {
         Food returnFood;
         switch(animal.toString()) {
             case "SCARLET_MACAW":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.BIRD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.SCARLET_MACAW);
                 break;
             case "GREY_PARROT":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.BIRD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.GREY_PARROT);
                 break;
             case "PALLID_PARROT":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.BIRD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.PALLID_PARROT);
                 break;
             case "BALL_PYTHON":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.SNAKE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.BALL_PYTHON);
                 break;
             case "CORN_SNAKE":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.SNAKE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.CORN_SNAKE);
                 break;
             case "ROSY_BOA":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.SNAKE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.ROSY_BOA);
                 break;
             case "SPINY_SOFTSHELL_TURTLE":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.TURTLE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.SPINY_SOFTSHELL_TURTLE);
                 break;
             case "RED_EARED_SLIDER":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.TURTLE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.RED_EARED_SLIDER);
                 break;
             case "BOX_TURTLE":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.TURTLE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.BOX_TURTLE);
                 break;
             case "BEARDED_DRAGON":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.LIZARD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.BEARDED_DRAGON);
                 break;
             case "LEOPARD_GECKO":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.LIZARD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.LEOPARD_GECKO);
                 break;
             case "IGUANA":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.LIZARD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.IGUANA);
                 break;
             case "FERRET":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.RODENT);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.FERRET);
                 break;
             case "RAT":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.RODENT);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.RAT);
                 break;
             case "SKUNK":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.RODENT);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.SKUNK);
                 break;
             case "HEDGEHOG":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.RODENT);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.HEDGEHOG);
                 break;
             case "FENNEC_FOX":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.FENNEC_FOX);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.FENNEC_FOX);
                 break;
             case "RACCOON":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.RACCOON);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.RACCOON);
                 break;
             case "BEAR":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.BEAR);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.BEAR);
                 break;
             case "ENGLISH_BERNARD":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.DOG);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.ENGLISH_BERNARD);
                 break;
             case "GERMAN_SHEPARD":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.DOG);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.GERMAN_SHEPARD);
                 break;
             case "YORKSHIRE_TERRIER":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.DOG);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.YORKSHIRE_TERRIER);
                 break;
             case "PIT_BULL":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.DOG);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.PIT_BULL);
                 break;
             case "GREYHOUND":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.DOG);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.GREYHOUND);
                 break;
             case "SPHINX":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.FELINE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.SPHINX);
                 break;
             case "PERSIAN":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.FELINE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.PERSIAN);
                 break;
             case "GARFIELD":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.GARFIELD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.GARFIELD);
                 break;
             case "KOREAN_BOBTAIL":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.FELINE);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.KOREAN_BOBTAIL);
                 break;
             case "CROW":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.BIRD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.CROW);
                 break;
             case "TOUCAN":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.BIRD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.TOUCAN);
                 break;
             case "PIDGEON":
-                returnFood = new Food(amountOfFood, AnimalTypes.AnimalFoodType.BIRD);
+                returnFood = new Food(amountOfFood, AnimalTypes.AllAnimals.PIGEON);
                 break;
             default:
                 returnFood = new Food(0, null);

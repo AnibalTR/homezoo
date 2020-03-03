@@ -20,6 +20,10 @@ public class  PersonalZooView {
         showMessage("[1] Go To Store\r\n[2] View Inventory\r\n[3] Take Care of Pets\r\n[0] Save and Exit");
     }
 
+    public void displayCaringMenu(String petName){
+        showMessage(String.format("[1] feed %s\r\n[2] play with %s\r\n[3] clean %s\r\n",petName));
+    }
+
     public int getUserSelection(int min, int max) throws IOException {
         while (true) {
             String rawInput = userIn.readLine();

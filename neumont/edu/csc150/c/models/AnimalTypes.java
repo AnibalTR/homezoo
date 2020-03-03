@@ -125,19 +125,5 @@ public class AnimalTypes {
         PALLID_PARROT
     }
 
-    public enum AnimalFoodType {
-        BIRD,
-        TURTLE,
-        SNAKE,
-        LIZARD,
-        BEAR,
-        DOG,
-        FELINE,
-        GARFIELD,
-        RACCOON,
-        RODENT,
-        FENNEC_FOX
-    }
-
 
 }

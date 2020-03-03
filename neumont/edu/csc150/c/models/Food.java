@@ -2,11 +2,11 @@ package neumont.edu.csc150.c.models;
 
 public class Food {
     private int amountOfFood;
-    private AnimalTypes.AnimalFoodType type;
+    private AnimalTypes.AllAnimals type;
 
     public Food() {}
 
-    public Food(int amountOfFood, AnimalTypes.AnimalFoodType foodType) {
+    public Food(int amountOfFood, AnimalTypes.AllAnimals foodType) {
         this.amountOfFood = amountOfFood;
         this.type = foodType;
     }
@@ -19,11 +19,11 @@ public class Food {
         this.amountOfFood = amountOfFood;
     }
 
-    public AnimalTypes.AnimalFoodType getFoodType() {
+    public AnimalTypes.AllAnimals getFoodType() {
         return type;
     }
 
-    public void setFoodType(AnimalTypes.AnimalFoodType type) {
+    public void setFoodType(AnimalTypes.AllAnimals type) {
         this.type = type;
     }
 

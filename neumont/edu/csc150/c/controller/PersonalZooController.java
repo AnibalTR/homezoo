@@ -1,19 +1,18 @@
 package neumont.edu.csc150.c.controller;
 
-import neumont.edu.csc150.c.models.Encryption;
-import neumont.edu.csc150.c.models.Environment;
-import neumont.edu.csc150.c.models.Food;
-import neumont.edu.csc150.c.models.User;
+import neumont.edu.csc150.c.models.*;
 import neumont.edu.csc150.c.view.PersonalZooView;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PersonalZooController {
     private final static String usersFolder = "Users";
     private PersonalZooView personalZooUI = new PersonalZooView();
     private Encryption encryptor = new Encryption();
     private User newUser;
+
 
     public PersonalZooController() {
         File folder = new File(usersFolder);
@@ -61,8 +60,77 @@ public class PersonalZooController {
                 viewInventory();
                 break;
             case 3:
-//                managePets();
+                managePets();
                 break;
+        }
+    }
+
+    private boolean managePets() throws IOException {
+        List<Pet> pets = new ArrayList<>();
+        for (int i = 0; i < newUser.getEnvironments().size(); i++) {
+            if (newUser.getEnvironments().get(i).getPet() == null) {
+                continue;
+            } else {
+                pets.add(newUser.getEnvironments().get(i).getPet());
+            }
+        }
+
+        for (int i = 0; i < pets.size(); i++) {
+            personalZooUI.showMessage(String.format("[%d] %s : %s",
+                    i + 1, pets.get(i).getName(), pets.get(i).getAnimalType()));
+        }
+
+        int selection = personalZooUI.getUserSelection(1, pets.size());
+
+        managePet(pets.get(selection - 1));
+
+        return true;
+    }
+
+    private void managePet(Pet pet) throws IOException {
+        personalZooUI.showMessage(pet.toString());
+        if(pet.isAsleep() == false){
+            personalZooUI.displayCaringMenu(pet.getName());
+            int selection = personalZooUI.getUserSelection(1,3);
+            switch(selection){
+                case 1:
+                    feedPet(pet);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }
+        else if(pet.isAsleep() == true){
+            personalZooUI.showError(String.format("%s is a asleep come back in a while",pet.getName()));
+        }
+    }
+
+    private void feedPet(Pet pet) throws IOException {
+        List<Food> food = new ArrayList<>();
+        personalZooUI.showMessage(String.format("%s : %s", pet.getName(), pet.getAnimalType()));
+        for (int i = 0; i < newUser.getFood().size(); i++) {
+            Food petFood = newUser.getFood().get(i);
+            if(pet.getAnimalType().equals(petFood.getFoodType())){
+                food.add(petFood);
+            }
+        }
+
+        if (food.size() < 1)
+            personalZooUI.showMessage("You do not currently have food for this pet");
+        else {
+            for (int i = 0; i < food.size(); i++) {
+                personalZooUI.showMessage(String.format("[%d] %s", i + 1, newUser.getFood().get(i).toString()));
+            }
+            int selection = personalZooUI.getUserSelection(1, food.size());
+
+            for (int i = 0; i < newUser.getFood().size(); i++) {
+                if (newUser.getFood().get(i).toString().equals(food.get(selection))) {
+                    newUser.getFood().remove(i);
+                    pet.eat(food.get(selection));
+                }
+            }
         }
     }
 
@@ -83,15 +151,17 @@ public class PersonalZooController {
         return true;
     }
 
-    private void viewFoodSupply() {
+    private void viewFoodSupply() throws IOException {
 
         personalZooUI.showMessage("========Food Supply======");
         for (int i = 0; i < newUser.getFood().size(); i++) {
             personalZooUI.showMessage(String.format("[%d] %s", i+1, newUser.getFood().get(i).toString()));
         }
+        personalZooUI.showMessage("Press enter to Exit");
+        personalZooUI.readString(0);
     }
 
-    private void viewPetStats() {
+    private void viewPetStats() throws IOException {
         personalZooUI.showMessage("========Animals======");
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
             if (newUser.getEnvironments().get(i).getPet() == null) {
@@ -100,6 +170,8 @@ public class PersonalZooController {
                 personalZooUI.showMessage(String.format("[%d] %s", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
             }
         }
+        personalZooUI.showMessage("Press enter to Exit");
+        personalZooUI.readString(0);
     }
 
     private void goToStore() {
