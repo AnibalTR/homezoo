@@ -94,13 +94,13 @@ public class PersonalZooController {
                     System.exit(0);
                     break;
                 case 1:
-                    goToStore();
+                    goToStore(leaveGameMenu);
                     break;
                 case 2:
                     viewInventory(leaveGameMenu);
                     break;
                 case 3:
-                    managePets();
+                    managePets(leaveGameMenu);
                     break;
                 case 4:
                     saveText(newUser);
@@ -111,7 +111,7 @@ public class PersonalZooController {
 
     }
 
-    private boolean managePets() throws IOException {
+    private boolean managePets(boolean exit) throws IOException {
 
         List<Pet> pets = new ArrayList<>();
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
@@ -191,10 +191,10 @@ public class PersonalZooController {
     }
 
     private void viewInventory(boolean exit) throws IOException {
-        personalZooUI.showMessage("=====Inventory=====");
-        personalZooUI.displayViewInventoryMenu();
-        int userInput = personalZooUI.getUserSelection(0, 2);
         do{
+            personalZooUI.showMessage("=====Inventory=====");
+            personalZooUI.displayViewInventoryMenu();
+            int userInput = personalZooUI.getUserSelection(0, 2);
             switch (userInput) {
                 case 0:
                     exit = true;
@@ -233,8 +233,97 @@ public class PersonalZooController {
         personalZooUI.readString(0);
     }
 
-    private void goToStore() {
+    private void goToStore(boolean exit) throws IOException {
 
+        do {
+            personalZooUI.showMessage("======= Store =======");
+            personalZooUI.displayStoreMainMenu();
+            int selection = personalZooUI.getUserSelection(0, 4);
+
+            switch (selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                    buyPet(exit, 1);
+                    break;
+                case 2:
+                    buyEnvironment(exit, 2);
+                    break;
+                case 3:
+                    buyFood(exit, 3);
+                    break;
+                case 4:
+                    sellPet();
+                    break;
+            }
+        } while(!exit);
+
+    }
+
+    private void sellPet() {
+    }
+
+    private void buyFood(boolean exit, int currentDirectory) {
+
+    }
+
+    private void buyEnvironment(boolean exit, int currentDirectory) {
+
+    }
+
+    private void buyPet(boolean exit, int currentDirectory) throws IOException {
+
+        do {
+            personalZooUI.showMessage("======= Animal Class =======");
+            personalZooUI.displayStoreSubMenu();
+            int selection = personalZooUI.getUserSelection(0, 3);
+
+            switch (selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                    displayReptileClass(exit, currentDirectory);
+                    break;
+                case 2:
+                    displayMammalClass(exit, currentDirectory);
+                    break;
+                case 3:
+                    displayBirdClass(exit, currentDirectory);
+                    break;
+            }
+
+
+        } while (!exit);
+    }
+
+    private void displayBirdClass(boolean exit, int currentDirectory) throws IOException {
+        do {
+            personalZooUI.showMessage("======= BIRDS =======");
+            personalZooUI.displayBirdClass();
+            int selection = personalZooUI.getUserSelection(0, AnimalTypes.BirdSpecies.values().length);
+
+            switch(selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+            }
+        } while(!exit);
+    }
+
+    
+
+    private void displayMammalClass(boolean exit, int currentDirectory) {
+        personalZooUI.displayMammalClass();
+    }
+
+    private void displayReptileClass(boolean exit, int currentDirectory) {
+        personalZooUI.displayReptileClass();
     }
 
     private void signUp() throws IOException {

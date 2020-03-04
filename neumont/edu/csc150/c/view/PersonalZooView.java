@@ -1,5 +1,7 @@
 package neumont.edu.csc150.c.view;
 
+import neumont.edu.csc150.c.models.AnimalTypes;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -61,6 +63,38 @@ public class  PersonalZooView {
 
     public void displayViewInventoryMenu() {
         showMessage("[1] View Pets and Environments\r\n[2] View Food Supply\r\n[0] Back");
+    }
+
+    public void displayStoreMainMenu() {
+        showMessage("[1] Buy Pet\r\n[2] Buy Environment\r\n[3] Buy Food\r\n[4] Sell Pet\r\n[0] Exit");
+    }
+
+    public void displayStoreSubMenu() {
+        for (int i = 0; i < AnimalTypes.AnimalSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.AnimalSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayReptileClass() {
+        for (int i = 0; i < AnimalTypes.ReptileSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.ReptileSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayMammalClass() {
+        for (int i = 0; i < AnimalTypes.MammalSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.MammalSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayBirdClass() {
+        for (int i = 0; i < AnimalTypes.BirdSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.BirdSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
     }
 
 

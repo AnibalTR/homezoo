@@ -5,8 +5,7 @@ public class Environment {
     private Pet pet = null;
     private AnimalTypes.AllAnimals animalsCage = AnimalTypes.AllAnimals.EMPTY;
 
-    public Environment(){
-    }
+    public Environment() {}
 
     public Environment(Pet pet, AnimalTypes.AllAnimals animalsCage) {
         this.setPet(pet);
@@ -32,10 +31,10 @@ public class Environment {
     public String serialize() {
         String returnString;
         if(getPet() == null){
-            returnString = getAnimalsCage().toString()+"\\,";
+            returnString = getAnimalsCage().toString() + ",";
         }
         else{
-            returnString = getPet().serialize()+"\\,";
+            returnString = getPet().serialize() + ",";
         }
         return returnString;
     }
