@@ -4,7 +4,6 @@ import neumont.edu.csc150.c.models.*;
 import neumont.edu.csc150.c.view.PersonalZooView;
 
 import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +27,7 @@ public class PersonalZooController {
 
         boolean exitRequested = false;
         do {
+            personalZooUI.showMessage("======= Main Menu =======");
             personalZooUI.displayMainMenu();
             int selection = personalZooUI.getUserSelection(0, 2);
             switch(selection){
@@ -245,7 +245,7 @@ public class PersonalZooController {
                     exit = true;
                     break;
                 case 1:
-                    buyPet(exit, 1);
+                    viewPet(exit, 1);
                     break;
                 case 2:
                     buyEnvironment(exit, 2);
@@ -272,7 +272,7 @@ public class PersonalZooController {
 
     }
 
-    private void buyPet(boolean exit, int currentDirectory) throws IOException {
+    private void viewPet(boolean exit, int currentDirectory) throws IOException {
 
         do {
             personalZooUI.showMessage("======= Animal Class =======");
@@ -324,25 +324,48 @@ public class PersonalZooController {
             personalZooUI.showMessage("====== Parrots =====");
             personalZooUI.displayParrotsClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.ParrotSpecies.values().length);
+            AnimalTypes.AllAnimals selectedAnimal = null;
+            if (selection != 0)
+                selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.ParrotSpecies.values()[selection - 1].toString());
 
             switch(selection) {
                 case 0:
                     exit = true;
                     break;
                 case 1:
-
-                    break;
                 case 2:
-
-                    break;
                 case 3:
+                    buyPet(exit, currentDirectory, selectedAnimal);
                     break;
             }
         }while(!exit);
     }
 
-    private void displayMiscBirds(boolean exit, int currentDirectory) {
-        personalZooUI.displayMiscBirdClass();
+    private void buyPet(boolean exit, int currentDirectory, AnimalTypes.AllAnimals selectedAnimal) {
+
+    }
+
+    private void displayMiscBirds(boolean exit, int currentDirectory) throws IOException {
+        do{
+            personalZooUI.showMessage("====== Parrots =====");
+            personalZooUI.displayMiscBirdClass();
+            int selection = personalZooUI.getUserSelection(0, AnimalTypes.MiscBirdSpecies.values().length);
+            AnimalTypes.AllAnimals selectedAnimal = null;
+            if (selection != 0)
+                selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.MiscBirdSpecies.values()[selection - 1].toString());
+
+            switch(selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    buyPet(exit, currentDirectory, selectedAnimal);
+                    break;
+            }
+        }while(!exit);
+
     }
 
     private void displayMammalClass(boolean exit, int currentDirectory) {
