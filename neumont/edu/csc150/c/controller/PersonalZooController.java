@@ -84,12 +84,11 @@ public class PersonalZooController {
 
     private void play() throws IOException {
         boolean leaveGameMenu = false;
-        personalZooUI.displayPlayMenu();
-        int userInput = personalZooUI.getUserSelection(0, 4);
         do{
+            personalZooUI.displayPlayMenu();
+            int userInput = personalZooUI.getUserSelection(0, 4);
             switch(userInput) {
                 case 0:
-                    saveText(newUser);
                     personalZooUI.showMessage("Saving and Exiting...");
                     leaveGameMenu = true;
                     System.exit(0);
@@ -98,12 +97,13 @@ public class PersonalZooController {
                     goToStore();
                     break;
                 case 2:
-                    viewInventory();
+                    viewInventory(leaveGameMenu);
                     break;
                 case 3:
                     managePets();
                     break;
                 case 4:
+                    saveText(newUser);
                     leaveGameMenu = true;
                     break;
             }
@@ -190,21 +190,24 @@ public class PersonalZooController {
         }
     }
 
-    private boolean viewInventory() throws IOException {
+    private void viewInventory(boolean exit) throws IOException {
+        personalZooUI.showMessage("=====Inventory=====");
         personalZooUI.displayViewInventoryMenu();
         int userInput = personalZooUI.getUserSelection(0, 2);
+        do{
+            switch (userInput) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                    viewPetStats();
+                    break;
+                case 2:
+                    viewFoodSupply();
+                    break;
+            }
+        }while(!exit);
 
-        switch (userInput) {
-            case 0:
-                return true;
-            case 1:
-                viewPetStats();
-                break;
-            case 2:
-                viewFoodSupply();
-                break;
-        }
-        return true;
     }
 
     private void viewFoodSupply() throws IOException {
