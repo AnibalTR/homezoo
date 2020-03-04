@@ -97,6 +97,20 @@ public class  PersonalZooView {
         showMessage("[0] Exit");
     }
 
+    public void displayMiscBirdClass() {
+        for (int i = 0; i < AnimalTypes.MiscBirdSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.MiscBirdSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayParrotsClass() {
+        for (int i = 0; i < AnimalTypes.ParrotSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.ParrotSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
 
     /*// reptiles
 
