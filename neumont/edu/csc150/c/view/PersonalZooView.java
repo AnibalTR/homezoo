@@ -17,7 +17,7 @@ public class  PersonalZooView {
     }
 
     public void displayPlayMenu() {
-        showMessage("[1] Go To Store\r\n[2] View Inventory\r\n[3] Take Care of Pets\r\n[0] Save and Exit");
+        showMessage("[1] Go To Store\r\n[2] View Inventory\r\n[3] Take Care of Pets\r\n[4] Sign Out\r\n[0] Save and Exit");
     }
 
     public void displayCaringMenu(String petName){

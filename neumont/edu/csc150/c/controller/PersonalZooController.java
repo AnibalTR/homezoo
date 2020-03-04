@@ -83,25 +83,32 @@ public class PersonalZooController {
     }
 
     private void play() throws IOException {
+        boolean leaveGameMenu = false;
         personalZooUI.displayPlayMenu();
-        int userInput = personalZooUI.getUserSelection(0, 3);
+        int userInput = personalZooUI.getUserSelection(0, 4);
+        do{
+            switch(userInput) {
+                case 0:
+                    saveText(newUser);
+                    personalZooUI.showMessage("Saving and Exiting...");
+                    leaveGameMenu = true;
+                    System.exit(0);
+                    break;
+                case 1:
+                    goToStore();
+                    break;
+                case 2:
+                    viewInventory();
+                    break;
+                case 3:
+                    managePets();
+                    break;
+                case 4:
+                    leaveGameMenu = true;
+                    break;
+            }
+        }while(!leaveGameMenu);
 
-        switch(userInput) {
-            case 0:
-                saveText(newUser);
-                personalZooUI.showMessage("Saving and Exiting...");
-                System.exit(0);
-                break;
-            case 1:
-                goToStore();
-                break;
-            case 2:
-                viewInventory();
-                break;
-            case 3:
-                managePets();
-                break;
-        }
     }
 
     private boolean managePets() throws IOException {
