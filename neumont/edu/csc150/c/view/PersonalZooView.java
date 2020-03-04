@@ -76,19 +76,6 @@ public class  PersonalZooView {
         showMessage("[0] Exit");
     }
 
-    public void displayReptileClass() {
-        for (int i = 0; i < AnimalTypes.ReptileSpecies.values().length; i++) {
-            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.ReptileSpecies.values()[i]));
-        }
-        showMessage("[0] Exit");
-    }
-
-    public void displayMammalClass() {
-        for (int i = 0; i < AnimalTypes.MammalSpecies.values().length; i++) {
-            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.MammalSpecies.values()[i]));
-        }
-        showMessage("[0] Exit");
-    }
 
     public void displayBirdClass() {
         for (int i = 0; i < AnimalTypes.BirdSpecies.values().length; i++) {
@@ -111,6 +98,49 @@ public class  PersonalZooView {
         showMessage("[0] Exit");
     }
 
+
+    public void displayMammalClass() {
+        for (int i = 0; i < AnimalTypes.MammalSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.MammalSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayRodentsClass() {
+        for (int i = 0; i < AnimalTypes.RodentSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.RodentSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayMiscMammalClass() {
+        for (int i = 0; i < AnimalTypes.MiscMammalSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.MiscMammalSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayDogClass() {
+        for (int i = 0; i < AnimalTypes.DogSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.DogSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayFelineClass() {
+        for (int i = 0; i < AnimalTypes.FelineSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.FelineSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+
+    public void displayReptileClass() {
+        for (int i = 0; i < AnimalTypes.ReptileSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.ReptileSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
 
     /*// reptiles
 
