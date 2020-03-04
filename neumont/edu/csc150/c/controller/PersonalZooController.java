@@ -316,7 +316,7 @@ public class PersonalZooController {
         } while(!exit);
     }
 
-    
+
 
     private void displayMammalClass(boolean exit, int currentDirectory) {
         personalZooUI.displayMammalClass();

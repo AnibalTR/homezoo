@@ -412,7 +412,7 @@ public class Store {
         return returnCostPet;
     }
 
-//    SCARLET_MACAW = 200
+//        SCARLET_MACAW = 200
 //        GREY_PARROT = 180
 //        PALLID_PARROT = 160
 //        BALL_PYTHON = 80
