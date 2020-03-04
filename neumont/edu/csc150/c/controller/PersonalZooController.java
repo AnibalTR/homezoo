@@ -309,14 +309,42 @@ public class PersonalZooController {
                     exit = true;
                     break;
                 case 1:
+                    displayMiscBirds(exit, currentDirectory);
                     break;
                 case 2:
+                    displayParrots(exit, currentDirectory);
                     break;
             }
         } while(!exit);
     }
 
-    
+    private void displayParrots(boolean exit, int currentDirectory) throws IOException {
+
+        do{
+            personalZooUI.showMessage("====== Parrots =====");
+            personalZooUI.displayParrotsClass();
+            int selection = personalZooUI.getUserSelection(0, AnimalTypes.ParrotSpecies.values().length);
+
+            switch(selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                   
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    break;
+            }
+        }while(!exit);
+    }
+
+    private void displayMiscBirds(boolean exit, int currentDirectory) {
+        personalZooUI.displayMiscBirdClass();
+    }
+
 
     private void displayMammalClass(boolean exit, int currentDirectory) {
         personalZooUI.displayMammalClass();
