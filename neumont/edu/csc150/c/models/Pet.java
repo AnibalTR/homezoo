@@ -117,7 +117,7 @@ public class Pet implements PetInterface {
         return lastSleepTime;
     }
 
-    public void setLastSleepTime(int lastSleepTime) {
+    public void setLastSleepTime(long lastSleepTime) {
         this.lastSleepTime = lastSleepTime;
     }
 

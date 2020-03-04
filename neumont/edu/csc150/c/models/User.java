@@ -97,11 +97,11 @@ public class User {
         String[] pieces = serializedFood.split(",");
 
         for (int i = 0; i < pieces.length ; i++) {
-            AnimalTypes.AnimalFoodType foodType = null;
+            AnimalTypes.AllAnimals foodType = null;
             String[] foodPieces = pieces[i].split("<");
-            for (int j = 0; j < AnimalTypes.AnimalFoodType.values().length; j++) {
-                if(foodPieces[1].equals(AnimalTypes.AnimalFoodType.values()[j].toString())){
-                    foodType = AnimalTypes.AnimalFoodType.values()[j];
+            for (int j = 0; j < AnimalTypes.AllAnimals.values().length; j++) {
+                if(foodPieces[1].equals(AnimalTypes.AllAnimals.values()[j].toString())){
+                    foodType = AnimalTypes.AllAnimals.values()[j];
                 }
             }
             this.food.add(new Food(Integer.parseInt(foodPieces[0]), foodType));

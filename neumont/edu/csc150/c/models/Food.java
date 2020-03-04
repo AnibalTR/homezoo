@@ -28,7 +28,7 @@ public class Food {
     }
 
     public String serialize() {
-        return String.format("%d<%s", this.getAmountOfFood(), this.getFoodType());
+        return String.format("%d<%s,", this.getAmountOfFood(), this.getFoodType());
     }
 
     @Override

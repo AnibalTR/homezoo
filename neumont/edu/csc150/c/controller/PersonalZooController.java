@@ -4,15 +4,18 @@ import neumont.edu.csc150.c.models.*;
 import neumont.edu.csc150.c.view.PersonalZooView;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PersonalZooController {
     private final static String usersFolder = "Users";
     private PersonalZooView personalZooUI = new PersonalZooView();
     private Encryption encryptor = new Encryption();
-    private User newUser;
+    private Date date = new Date();
 
+    private User newUser;
 
     public PersonalZooController() {
         File folder = new File(usersFolder);
@@ -21,7 +24,8 @@ public class PersonalZooController {
         }
     }
 
-    public void run() throws IOException {
+    public void start() throws IOException {
+
         boolean exitRequested = false;
         do {
             personalZooUI.displayMainMenu();
@@ -33,6 +37,7 @@ public class PersonalZooController {
                     break;
                 case 1:
                     login();
+                    checkTimePassed();
                     play();
                     break;
                 case 2:
@@ -41,6 +46,40 @@ public class PersonalZooController {
                     break;
             }
         } while (!exitRequested);
+    }
+
+    private void checkTimePassed() {
+        for (Environment e : newUser.getEnvironments()) {
+            if (e.getPet() == null) {
+                continue;
+            } else {
+                boolean petUpdated = false;
+                Pet pet = e.getPet();
+                long now = date.getTime();
+                int day = 86000000;
+                long lastPlayTime = pet.getLastPlayTime();
+                long lastCleaningTime = pet.getLastCleaning();
+                long lastFeedingTime = pet.getLastFeedingTime();
+
+                do {
+                    if (lastPlayTime < now - day) {
+                        pet.setAttention(pet.getAttention() - 1);
+                        lastPlayTime -= day;
+                    } else if (lastCleaningTime < now - day) {
+                        pet.setMessiness(pet.getMessiness() - 1);
+                        lastCleaningTime -= day;
+                    } else if (lastFeedingTime < now - day) {
+                        pet.setHunger(pet.getHunger() - 1);
+                        lastFeedingTime -= day;
+                    } else if (pet.getLastSleepTime() % day > day / 2) {
+                        pet.setAsleep(!pet.isAsleep());
+                    } else {
+                        petUpdated = true;
+                    }
+                } while (!petUpdated);
+                pet.setLastSleepTime(now - pet.getLastSleepTime() % (day / 2));
+            }
+        }
     }
 
     private void play() throws IOException {
@@ -66,6 +105,7 @@ public class PersonalZooController {
     }
 
     private boolean managePets() throws IOException {
+
         List<Pet> pets = new ArrayList<>();
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
             if (newUser.getEnvironments().get(i).getPet() == null) {
@@ -89,21 +129,30 @@ public class PersonalZooController {
 
     private void managePet(Pet pet) throws IOException {
         personalZooUI.showMessage(pet.toString());
-        if(pet.isAsleep() == false){
+        if(!pet.isAsleep()) {
             personalZooUI.displayCaringMenu(pet.getName());
-            int selection = personalZooUI.getUserSelection(1,3);
+            int selection = personalZooUI.getUserSelection(0,3);
             switch(selection){
                 case 1:
                     feedPet(pet);
                     break;
                 case 2:
+                    playPet(pet);
                     break;
                 case 3:
                     break;
+                case 0:
+                    break;
             }
+        } else {
+            personalZooUI.showError(String.format("%s is asleep, come back in a while",pet.getName()));
         }
-        else if(pet.isAsleep() == true){
-            personalZooUI.showError(String.format("%s is a asleep come back in a while",pet.getName()));
+    }
+
+    private void playPet(Pet pet) {
+        if (pet.getAttention() < 10) {
+            pet.setAttention(pet.getAttention() + 1);
+//            pet.setLastPlayTime(LocalDate.);
         }
     }
 
@@ -227,7 +276,6 @@ public class PersonalZooController {
                 personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters\r\n" +
                         "To exit type 'exit'", minNameLen));
                 password = personalZooUI.readString(3);
-                System.out.println(userName);
                 if (password.toLowerCase().equals("exit")) {
                     return;
                 }
@@ -284,5 +332,9 @@ public class PersonalZooController {
             }
         }
         return false;
+    }
+
+    public void serializeUser() throws FileNotFoundException {
+        saveText(newUser);
     }
 }
