@@ -509,10 +509,9 @@ public class PersonalZooController {
         }
     }
 
-    private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) {
+    private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         personalZooUI.showMessage(String.format("How much %s food would you like? (1 - 3)\r\n[0] Exit", selectedAnimal));
         int selection = personalZooUI.getUserSelection(0,3);
-
         switch(selection) {
             case 0:
                 break;
@@ -526,7 +525,18 @@ public class PersonalZooController {
     }
 
     private void buyEnvironment(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
-
+        int petCost = store.getPriceOfPet(selectedAnimal);
+        int environmentCost = petCost / 2;
+        if (newUser.getMoney() - environmentCost < 0) {
+            personalZooUI.showMessage("You do not currently have the money needed to buy the %s environment");
+        } else {
+            newUser.setMoney(newUser.getMoney() - environmentCost);
+            List<Environment> envList;
+            Environment environment = new Environment(null, selectedAnimal);
+            envList = newUser.getEnvironments();
+            envList.add(environment);
+            newUser.setEnvironments(envList);
+        }
     }
 
     private void buyPet(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
