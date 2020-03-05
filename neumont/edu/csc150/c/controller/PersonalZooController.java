@@ -314,9 +314,7 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.ParrotSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else{
-                exit=true;
-            }
+            exit =true;
         }while(!exit);
     }
 
@@ -330,9 +328,7 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.MiscBirdSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else{
-                exit=true;
-            }
+            exit =true;
         }while(!exit);
 
     }
@@ -373,9 +369,7 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.FelineSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else {
-                exit = true;
-            }
+            exit =true;
         }while(!exit);
     }
 
@@ -389,9 +383,7 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.DogSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else{
-                exit=true;
-            }
+            exit =true;
         }while(!exit);
     }
 
@@ -405,9 +397,7 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.MiscMammalSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else{
-                exit=true;
-            }
+            exit =true;
         }while(!exit);
     }
 
@@ -421,9 +411,7 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.RodentSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else{
-                exit=true;
-            }
+            exit =true;
         }while(!exit);
     }
 
@@ -459,8 +447,7 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.LizardSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else
-                exit = true;
+            exit =true;
         }while(!exit);
     }
 
@@ -474,14 +461,11 @@ public class PersonalZooController {
                 selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.TurtleSpecies.values()[selection - 1].toString());
                 buyProduct(exit, currentDirectory, selectedAnimal);
             }
-            else{
-                exit =true;
-            }
+            exit =true;
         }while(!exit);
     }
 
     private void displaySnakes(boolean exit, int currentDirectory) throws IOException {
-//        mine
         do{
             personalZooUI.showMessage("======= Snakes =======");
             personalZooUI.displaySnakeClass();
@@ -514,6 +498,11 @@ public class PersonalZooController {
         int selection = personalZooUI.getUserSelection(0,3);
         int foodCost = store.getPriceOfPet(selectedAnimal)/10;
         int totalCost = foodCost*selection;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 54a17f7e9c5d50237ed97e8081fc8405e35509a7
         switch(selection) {
             case 0:
                 break;
