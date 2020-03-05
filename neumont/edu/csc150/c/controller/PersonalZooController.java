@@ -539,19 +539,17 @@ public class PersonalZooController {
     }
 
     private void buyProduct(boolean exit, int currentDirectory, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
-        do {
-            switch(currentDirectory) {
-                case 1:
-                    buyPet(exit, selectedAnimal);
-                    break;
-                case 2:
-                    buyEnvironment(exit, selectedAnimal);
-                    break;
-                case 3:
-                    buyFood(exit, selectedAnimal);
-                    break;
-            }
-        } while (!exit);
+        switch(currentDirectory) {
+            case 1:
+                buyPet(exit, selectedAnimal);
+                break;
+            case 2:
+                buyEnvironment(exit, selectedAnimal);
+                break;
+            case 3:
+                buyFood(exit, selectedAnimal);
+                break;
+        }
     }
 
     private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) {
