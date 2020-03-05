@@ -514,6 +514,7 @@ public class PersonalZooController {
         int cost = store.getPriceOfPet(selectedAnimal);
             switch(selection) {
                 case 0:
+                    // hello
                     exit = false;
                     leaveQuestion = true;
                     break;
