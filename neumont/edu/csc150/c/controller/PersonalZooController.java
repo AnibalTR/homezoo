@@ -498,11 +498,6 @@ public class PersonalZooController {
         int selection = personalZooUI.getUserSelection(0,3);
         int foodCost = store.getPriceOfPet(selectedAnimal)/10;
         int totalCost = foodCost*selection;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 54a17f7e9c5d50237ed97e8081fc8405e35509a7
         switch(selection) {
             case 0:
                 break;
