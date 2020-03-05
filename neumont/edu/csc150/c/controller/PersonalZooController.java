@@ -14,7 +14,6 @@ public class PersonalZooController {
     private Encryption encryptor = new Encryption();
     private Date date = new Date();
     private Store store = new Store();
-
     private User newUser;
 
     public PersonalZooController() {
@@ -102,6 +101,7 @@ public class PersonalZooController {
             switch(userInput) {
                 case 0:
                     personalZooUI.showMessage("Saving and Exiting...");
+                    saveText(newUser);
                     leaveGameMenu = true;
                     System.exit(0);
                     break;
@@ -512,15 +512,10 @@ public class PersonalZooController {
     private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         personalZooUI.showMessage(String.format("How much %s food would you like? (1 - 3)\r\n[0] Exit", selectedAnimal));
         int selection = personalZooUI.getUserSelection(0,3);
-<<<<<<< HEAD
-=======
         int foodCost = store.getPriceOfPet(selectedAnimal)/10;
         int totalCost = foodCost*selection;
-
->>>>>>> cd2f2c66dc8a05615493cea74bcb7de0526ccc12
         switch(selection) {
             case 0:
-                exit = true;
                 break;
             case 1:
             case 2:
@@ -572,10 +567,9 @@ public class PersonalZooController {
 
     private boolean checkUserEnvironments(AnimalTypes.AllAnimals selectedAnimal) {
         boolean hasEnvironment = false;
-        for (Environment e : newUser.getEnvironments()) {
+        for (Environment e : newUser.getEnvironments())
             if (e.getAnimalsCage().toString().equals(selectedAnimal.toString()) && e.getPet() == null) {
                 hasEnvironment = true;
-            }
         }
         return hasEnvironment;
     }
@@ -590,12 +584,14 @@ public class PersonalZooController {
         String petName = personalZooUI.readString(3);
         Pet pet = store.buyPet(selectedAnimal, AnimalTypes.Colors.values()[selection - 1]);
         pet.setName(petName);
-        for (Environment e : newUser.getEnvironments()) {
+        List<Environment> env = newUser.getEnvironments();
+        for (Environment e : env) {
             if (e.getAnimalsCage().toString().equals(pet.getAnimalType().toString()) && e.getPet() == null) {
                 e.setPet(pet);
                 break;
             }
         }
+        newUser.setEnvironments(env);
     }
 
     private void signUp() throws IOException {
@@ -632,17 +628,14 @@ public class PersonalZooController {
             while (userNamePasses == false) {
                 personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters\r\nTo exit type 'exit'", minNameLen));
                 userName = personalZooUI.readString(minNameLen);
-
                 if (userName.toLowerCase().equals("exit")) {
                     return;
                 }
-
                 userNamePasses = searchEntry(userName);
                 if (!userNamePasses){
                     personalZooUI.showError("We could not find that user, please enter a different username");
                 }
             }
-
             while (userPWPasses == false) {
                 personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters\r\n" +
                         "To exit type 'exit'", minNameLen));
@@ -650,9 +643,7 @@ public class PersonalZooController {
                 if (password.toLowerCase().equals("exit")) {
                     return;
                 }
-
                 newUser = loadJournal(userName);
-
                 if (newUser != null) {
                     userPWPasses = newUser.getPassword().equals(encryptor.encrypt(password));
                 } else {
@@ -664,7 +655,7 @@ public class PersonalZooController {
     }
 
     public void saveText(User user) throws FileNotFoundException {
-        File file = new File(usersFolder,user.getUserName());
+        File file = new File(usersFolder, user.getUserName());
         PrintStream outFile = new PrintStream(file + ".txt");
         try{
             outFile.println(user.serialize());
@@ -707,5 +698,9 @@ public class PersonalZooController {
 
     public void serializeUser() throws FileNotFoundException {
         saveText(newUser);
+    }
+
+    public User getUser() {
+        return newUser;
     }
 }
