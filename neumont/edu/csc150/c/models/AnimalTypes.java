@@ -70,7 +70,7 @@ public class AnimalTypes {
     public enum LizardSpecies {
         BEARDED_DRAGON,
         LEOPARD_GECKO,
-        IGUANAS
+        IGUANA
     }
 
     public enum MammalSpecies {

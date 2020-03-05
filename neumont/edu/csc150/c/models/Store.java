@@ -3,6 +3,7 @@ package neumont.edu.csc150.c.models;
 import java.util.Date;
 
 public class Store {
+    Date date = new Date();
 
     public Food buyFood(int amountOfFood, AnimalTypes.AllAnimals animal) {
         Food returnFood;
@@ -212,109 +213,211 @@ public class Store {
         Pet returnPet;
         switch(animal.toString()) {
             case "SCARLET_MACAW":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.SCARLET_MACAW, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.SCARLET_MACAW, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "GREY_PARROT":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.GREY_PARROT, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.GREY_PARROT, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "PALLID_PARROT":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.PALLID_PARROT, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.PALLID_PARROT, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "BALL_PYTHON":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.BALL_PYTHON, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.BALL_PYTHON, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "CORN_SNAKE":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.CORN_SNAKE, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.CORN_SNAKE, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "ROSY_BOA":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.ROSY_BOA, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.ROSY_BOA, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "SPINY_SOFTSHELL_TURTLE":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.SPINY_SOFTSHELL_TURTLE, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.SPINY_SOFTSHELL_TURTLE, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "RED_EARED_SLIDER":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.RED_EARED_SLIDER, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.RED_EARED_SLIDER, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "BOX_TURTLE":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.BOX_TURTLE, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.BOX_TURTLE, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "BEARDED_DRAGON":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.BEARDED_DRAGON, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.BEARDED_DRAGON, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "LEOPARD_GECKO":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.LEOPARD_GECKO, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.LEOPARD_GECKO, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "IGUANA":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.IGUANA, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.IGUANA, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "FERRET":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.FERRET, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.FERRET, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "RAT":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.RAT, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.RAT, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "SKUNK":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.SKUNK, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.SKUNK, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "HEDGEHOG":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.HEDGEHOG, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.HEDGEHOG, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "FENNEC_FOX":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.FENNEC_FOX, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.FENNEC_FOX, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "RACCOON":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.RACCOON, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.RACCOON, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "BEAR":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.BEAR, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.BEAR, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "ENGLISH_BERNARD":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.ENGLISH_BERNARD, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.ENGLISH_BERNARD, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "GERMAN_SHEPARD":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.GERMAN_SHEPARD, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.GERMAN_SHEPARD, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "YORKSHIRE_TERRIER":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.YORKSHIRE_TERRIER, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.YORKSHIRE_TERRIER, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "PIT_BULL":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.PIT_BULL, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.PIT_BULL, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "GREYHOUND":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.GREYHOUND, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.GREYHOUND, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "SPHINX":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.SPHINX, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.SPHINX, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "PERSIAN":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.PERSIAN, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.PERSIAN, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "GARFIELD":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.GARFIELD, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.GARFIELD, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "KOREAN_BOBTAIL":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.KOREAN_BOBTAIL, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.KOREAN_BOBTAIL, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "CROW":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.CROW, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.CROW, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "TOUCAN":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.TOUCAN, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.TOUCAN, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             case "PIDGEON":
-                returnPet = new Pet(null, AnimalTypes.AllAnimals.PIGEON, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, AnimalTypes.AllAnimals.PIGEON, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
                 break;
             default:
-                returnPet = new Pet(null, null, animalColor, 10, 10, 10, 5, new Date().getTime(), new Date().getTime(), new Date().getTime(), new Date().getTime(), false);
+                returnPet = new Pet(null, null, animalColor, 10, 10, 10, 5, date.getTime(), date.getTime(), date.getTime(), date.getTime(), false);
         }
         return returnPet;
+    }
+
+    public int getPriceOfPet(AnimalTypes.AllAnimals animal) {
+        int petCost = 0;
+        switch(animal.toString()) {
+            case "SCARLET_MACAW":
+                petCost = 200;
+                break;
+            case "GREY_PARROT":
+                petCost = 180;
+                break;
+            case "PALLID_PARROT":
+                petCost = 160;
+                break;
+            case "BALL_PYTHON":
+                petCost = 80;
+                break;
+            case "CORN_SNAKE":
+                petCost = 60;
+                break;
+            case "ROSY_BOA":
+                petCost = 100;
+                break;
+            case "SPINY_SOFTSHELL_TURTLE":
+                petCost = 40;
+                break;
+            case "RED_EARED_SLIDER":
+                petCost = 50;
+                break;
+            case "BOX_TURTLE":
+                petCost = 70;
+                break;
+            case "BEARDED_DRAGON":
+                petCost = 100;
+                break;
+            case "LEOPARD_GECKO":
+                petCost = 80;
+                break;
+            case "IGUANA":
+                petCost = 300;
+                break;
+            case "FERRET":
+                petCost = 80;
+                break;
+            case "RAT":
+                petCost = 40;
+                break;
+            case "SKUNK":
+                petCost = 300;
+                break;
+            case "HEDGEHOG":
+                petCost = 80;
+                break;
+            case "FENNEC_FOX":
+                petCost = 400;
+                break;
+            case "RACCOON":
+                petCost = 150;
+                break;
+            case "BEAR":
+                petCost = 1000;
+                break;
+            case "ENGLISH_BERNARD":
+                petCost = 250;
+                break;
+            case "GERMAN_SHEPARD":
+                petCost = 200;
+                break;
+            case "YORKSHIRE_TERRIER":
+                petCost = 300;
+                break;
+            case "PIT_BULL":
+                petCost = 400;
+                break;
+            case "GREYHOUND":
+                petCost = 420;
+                break;
+            case "SPHINX":
+                petCost = 150;
+                break;
+            case "PERSIAN":
+                petCost = 120;
+                break;
+            case "GARFIELD":
+                petCost = 3000;
+                break;
+            case "KOREAN_BOBTAIL":
+                petCost = 250;
+                break;
+            case "CROW":
+                petCost = 300;
+                break;
+            case "TOUCAN":
+                petCost = 400;
+                break;
+            case "PIDGEON":
+                petCost = 200;
+                break;
+            default:
+                petCost = 0;
+        }
+        return petCost;
     }
 
     public int sellPet(AnimalTypes.AllAnimals animal, int stars) {
         int returnCostPet = 0;
         switch(animal.toString()) {
             case "SCARLET_MACAW":
-                returnCostPet = 20*(stars -1);
+                returnCostPet = 50*(stars -1);
                 break;
             case "GREY_PARROT":
                 returnCostPet = 45*(stars -1);
@@ -359,7 +462,7 @@ public class Store {
                 returnCostPet = 75*(stars -1);
                 break;
             case "HEDGEHOG":
-                returnCostPet = 20*(stars -1);
+                returnCostPet = 15*(stars -1);
                 break;
             case "FENNEC_FOX":
                 returnCostPet = 100*(stars -1);
@@ -407,40 +510,8 @@ public class Store {
                 returnCostPet = 50*(stars -1);
                 break;
             default:
-                returnCostPet = 0*stars;
+                returnCostPet = 0;
         }
         return returnCostPet;
     }
-
-//        SCARLET_MACAW = 200
-//        GREY_PARROT = 180
-//        PALLID_PARROT = 160
-//        BALL_PYTHON = 80
-//        CORN_SNAKE = 60
-//        ROSY_BOA = 100
-//        SPINY_SOFTSHELL_TURTLE 40
-//        RED_EARED_SLIDER = 50
-//        BOX_TURTLE = 70
-//        BEARDED_DRAGON = 100
-//        LEOPARD_GECKO = 80
-//        IGUANA = 300
-//        FERRET = 80
-//        RAT = 40
-//        SKUNK = 300
-//        HEDGEHOG = 60
-//        FENNEC_FOX = 400
-//        RACCOON = 150
-//        BEAR = 1000
-//        ENGLISH_BERNARD = 250
-//        GERMAN_SHEPARD = 200
-//        YORKSHIRE_TERRIER = 300
-//        PIT_BULL = 400
-//        GREYHOUND = 420
-//        SPHINX = 150
-//        PERSIAN = 120
-//        GARFIELD = 3000
-//        KOREAN_BOBTAIL = 250
-//        CROW = 300
-//        TOUCAN = 400
-//        PIGEON = 200
 }

@@ -13,18 +13,17 @@ public class PersonalZooController {
     private PersonalZooView personalZooUI = new PersonalZooView();
     private Encryption encryptor = new Encryption();
     private Date date = new Date();
+    private Store store = new Store();
 
     private User newUser;
 
     public PersonalZooController() {
         File folder = new File(usersFolder);
-        if(!folder.exists()){
+        if(!folder.exists())
             folder.mkdir();
-        }
     }
 
     public void start() throws IOException {
-
         boolean exitRequested = false;
         do {
             personalZooUI.showMessage("======= Main Menu =======");
@@ -108,11 +107,9 @@ public class PersonalZooController {
                     break;
             }
         }while(!leaveGameMenu);
-
     }
 
     private boolean managePets(boolean exit) throws IOException {
-
         List<Pet> pets = new ArrayList<>();
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
             if (newUser.getEnvironments().get(i).getPet() == null) {
@@ -121,16 +118,12 @@ public class PersonalZooController {
                 pets.add(newUser.getEnvironments().get(i).getPet());
             }
         }
-
         for (int i = 0; i < pets.size(); i++) {
             personalZooUI.showMessage(String.format("[%d] %s : %s",
                     i + 1, pets.get(i).getName(), pets.get(i).getAnimalType()));
         }
-
         int selection = personalZooUI.getUserSelection(1, pets.size());
-
         managePet(pets.get(selection - 1));
-
         return true;
     }
 
@@ -168,11 +161,9 @@ public class PersonalZooController {
         personalZooUI.showMessage(String.format("%s : %s", pet.getName(), pet.getAnimalType()));
         for (int i = 0; i < newUser.getFood().size(); i++) {
             Food petFood = newUser.getFood().get(i);
-            if(pet.getAnimalType().equals(petFood.getFoodType())){
+            if(pet.getAnimalType().equals(petFood.getFoodType()))
                 food.add(petFood);
-            }
         }
-
         if (food.size() < 1)
             personalZooUI.showMessage("You do not currently have food for this pet");
         else {
@@ -180,7 +171,6 @@ public class PersonalZooController {
                 personalZooUI.showMessage(String.format("[%d] %s", i + 1, newUser.getFood().get(i).toString()));
             }
             int selection = personalZooUI.getUserSelection(1, food.size());
-
             for (int i = 0; i < newUser.getFood().size(); i++) {
                 if (newUser.getFood().get(i).toString().equals(food.get(selection))) {
                     newUser.getFood().remove(i);
@@ -234,51 +224,37 @@ public class PersonalZooController {
     }
 
     private void goToStore(boolean exit) throws IOException {
-
         do {
             personalZooUI.showMessage("======= Store =======");
             personalZooUI.displayStoreMainMenu();
             int selection = personalZooUI.getUserSelection(0, 4);
-
             switch (selection) {
                 case 0:
                     exit = true;
                     break;
                 case 1:
-                    viewPet(exit, 1);
+                    mainStoreMenuSelector(exit, 1);
                     break;
                 case 2:
-                    buyEnvironment(exit, 2);
+                    mainStoreMenuSelector(exit, 2);
                     break;
                 case 3:
-                    buyFood(exit, 3);
+                    mainStoreMenuSelector(exit, 3);
                     break;
                 case 4:
                     sellPet();
                     break;
             }
         } while(!exit);
-
     }
 
-    private void sellPet() {
-    }
+    private void sellPet() {}
 
-    private void buyFood(boolean exit, int currentDirectory) {
-
-    }
-
-    private void buyEnvironment(boolean exit, int currentDirectory) {
-
-    }
-
-    private void viewPet(boolean exit, int currentDirectory) throws IOException {
-
+    private void mainStoreMenuSelector(boolean exit, int currentDirectory) throws IOException {
         do {
             personalZooUI.showMessage("======= Animal Class =======");
             personalZooUI.displayStoreSubMenu();
             int selection = personalZooUI.getUserSelection(0, 3);
-
             switch (selection) {
                 case 0:
                     exit = true;
@@ -293,8 +269,6 @@ public class PersonalZooController {
                     displayBirdClass(exit, currentDirectory);
                     break;
             }
-
-
         } while (!exit);
     }
 
@@ -320,7 +294,7 @@ public class PersonalZooController {
 
     private void displayParrots(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("====== Parrots =====");
+            personalZooUI.showMessage("======= Parrots =======");
             personalZooUI.displayParrotsClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.ParrotSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -334,19 +308,15 @@ public class PersonalZooController {
                 case 1:
                 case 2:
                 case 3:
-                    buyPet(exit, currentDirectory, selectedAnimal);
+                    buyProduct(exit, currentDirectory, selectedAnimal);
                     break;
             }
         }while(!exit);
     }
 
-    private void buyPet(boolean exit, int currentDirectory, AnimalTypes.AllAnimals selectedAnimal) {
-
-    }
-
     private void displayMiscBirds(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("====== Parrots =====");
+            personalZooUI.showMessage("======= Parrots =======");
             personalZooUI.displayMiscBirdClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.MiscBirdSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -360,7 +330,7 @@ public class PersonalZooController {
                 case 1:
                 case 2:
                 case 3:
-                    buyPet(exit, currentDirectory, selectedAnimal);
+                    buyProduct(exit, currentDirectory, selectedAnimal);
                     break;
             }
         }while(!exit);
@@ -395,7 +365,7 @@ public class PersonalZooController {
 
     private void displayFeline(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("====== Rodents =====");
+            personalZooUI.showMessage("======= Rodents =======");
             personalZooUI.displayFelineClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.FelineSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -409,7 +379,7 @@ public class PersonalZooController {
                 case 1:
                 case 2:
                 case 3:
-                    buyPet(exit, currentDirectory, selectedAnimal);
+                    buyProduct(exit, currentDirectory, selectedAnimal);
                     break;
             }
         }while(!exit);
@@ -417,7 +387,7 @@ public class PersonalZooController {
 
     private void displayDogs(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("====== Rodents =====");
+            personalZooUI.showMessage("======= Rodents =======");
             personalZooUI.displayDogClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.DogSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -431,7 +401,7 @@ public class PersonalZooController {
                 case 1:
                 case 2:
                 case 3:
-                    buyPet(exit, currentDirectory, selectedAnimal);
+                    buyProduct(exit, currentDirectory, selectedAnimal);
                     break;
             }
         }while(!exit);
@@ -439,7 +409,7 @@ public class PersonalZooController {
 
     private void displayMiscMammals(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("====== Misc. Mammals =====");
+            personalZooUI.showMessage("======= Miscellaneous Mammals =======");
             personalZooUI.displayMiscMammalClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.MiscMammalSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -453,7 +423,7 @@ public class PersonalZooController {
                 case 1:
                 case 2:
                 case 3:
-                    buyPet(exit, currentDirectory, selectedAnimal);
+                    buyProduct(exit, currentDirectory, selectedAnimal);
                     break;
             }
         }while(!exit);
@@ -461,7 +431,7 @@ public class PersonalZooController {
 
     private void displayRodents(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("====== Rodents =====");
+            personalZooUI.showMessage("======= Rodents =======");
             personalZooUI.displayRodentsClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.RodentSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -475,18 +445,178 @@ public class PersonalZooController {
                 case 1:
                 case 2:
                 case 3:
-                    buyPet(exit, currentDirectory, selectedAnimal);
+                    buyProduct(exit, currentDirectory, selectedAnimal);
                     break;
             }
         }while(!exit);
     }
 
+    private void displayReptileClass(boolean exit, int currentDirectory) throws IOException {
+        do {
+            personalZooUI.showMessage("======= REPTILES =======");
+            personalZooUI.displayReptileClass();
+            int selection = personalZooUI.getUserSelection(0, AnimalTypes.ReptileSpecies.values().length);
 
-    private void displayReptileClass(boolean exit, int currentDirectory) {
-        personalZooUI.displayReptileClass();
+            switch(selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                    displaySnakes(exit, currentDirectory);
+                    break;
+                case 2:
+                    displayTurtles(exit, currentDirectory);
+                    break;
+                case 3:
+                    displayLizards(exit, currentDirectory);
+            }
+        } while(!exit);
     }
 
+    private void displayLizards(boolean exit, int currentDirectory) throws IOException {
+        do{
+            personalZooUI.showMessage("======= Lizards =======");
+            personalZooUI.displayLizardClass();
+            int selection = personalZooUI.getUserSelection(0, AnimalTypes.LizardSpecies.values().length);
+            AnimalTypes.AllAnimals selectedAnimal = null;
+            if (selection != 0)
+                selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.LizardSpecies.values()[selection - 1].toString());
 
+            switch(selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    buyProduct(exit, currentDirectory, selectedAnimal);
+                    break;
+            }
+        }while(!exit);
+    }
+
+    private void displayTurtles(boolean exit, int currentDirectory) throws IOException {
+        do{
+            personalZooUI.showMessage("======= Turtles =======");
+            personalZooUI.displayTurtleClass();
+            int selection = personalZooUI.getUserSelection(0, AnimalTypes.TurtleSpecies.values().length);
+            AnimalTypes.AllAnimals selectedAnimal = null;
+            if (selection != 0)
+                selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.TurtleSpecies.values()[selection - 1].toString());
+
+            switch(selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    buyProduct(exit, currentDirectory, selectedAnimal);
+                    break;
+            }
+        }while(!exit);
+    }
+
+    private void displaySnakes(boolean exit, int currentDirectory) throws IOException {
+        do{
+            personalZooUI.showMessage("======= Snakes =======");
+            personalZooUI.displaySnakeClass();
+            int selection = personalZooUI.getUserSelection(0, AnimalTypes.SnakeSpecies.values().length);
+            AnimalTypes.AllAnimals selectedAnimal = null;
+            if (selection != 0)
+                selectedAnimal = AnimalTypes.AllAnimals.valueOf(AnimalTypes.SnakeSpecies.values()[selection - 1].toString());
+            switch(selection) {
+                case 0:
+                    exit = true;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    buyProduct(exit, currentDirectory, selectedAnimal);
+                    break;
+            }
+        }while(!exit);
+    }
+
+    private void buyProduct(boolean exit, int currentDirectory, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+        do {
+            switch(currentDirectory) {
+                case 1:
+                    buyPet(exit, selectedAnimal);
+                    break;
+                case 2:
+                    buyEnvironment(exit, selectedAnimal);
+                    break;
+                case 3:
+                    buyFood(exit, selectedAnimal);
+                    break;
+            }
+        } while (!exit);
+    }
+
+    private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) {
+
+    }
+
+    private void buyEnvironment(boolean exit, AnimalTypes.AllAnimals selectedAnimal) {
+
+    }
+
+    private void buyPet(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+        boolean hasEnvironment = checkUserEnvironments(selectedAnimal);
+        personalZooUI.showMessage(String.format("Are you sure you would like to purchase a %s?\r\n[0] yes\r\n[1] no", selectedAnimal));
+        int selection = personalZooUI.getUserSelection(0,1);
+        int cost = store.getPriceOfPet(selectedAnimal);
+
+        switch(selection) {
+            case 0:
+                exit = false;
+                break;
+            case 1:
+                exit = true;
+                break;
+        }
+
+//        if (!hasEnvironment) {
+//            System.out.println(String.format("You do not own the environment required for the %s", selectedAnimal));
+//            exit = true;
+//        } else {
+//            if (selection == 1) {
+//                exit = true;
+//            } else if (newUser.getMoney() - cost > 0) {
+//                personalZooUI.showMessage(String.format("You can afford the %s, would you like to purchase it?\r\n[0] yes\r\n[1] no", selectedAnimal));
+//                int purchaseChoice = personalZooUI.getUserSelection(0, 1);
+//                switch(purchaseChoice) {
+//                    case 0:
+//                        getPet(selectedAnimal);
+//                        break;
+//                    case 1:
+//                        exit = true;
+//                        break;
+//                }
+//            }
+//        }
+    }
+
+    private boolean checkUserEnvironments(AnimalTypes.AllAnimals selectedAnimal) {
+        boolean hasEnvironment = false;
+        for (Environment e : newUser.getEnvironments()) {
+            if (e.getAnimalsCage().toString().equals(selectedAnimal.toString())) {
+                hasEnvironment = true;
+                return hasEnvironment;
+            }
+        }
+        return hasEnvironment;
+    }
+
+    private void getPet(AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+        personalZooUI.displayPetColors();
+        int selection = personalZooUI.getUserSelection(1, AnimalTypes.Colors.values().length);
+        int cost = store.getPriceOfPet(selectedAnimal);
+        newUser.setMoney(newUser.getMoney() - cost);
+        Pet pet = store.buyPet(selectedAnimal, AnimalTypes.Colors.values()[selection - 1]);
+
+    }
 
     private void signUp() throws IOException {
         int minNameLen = 3;

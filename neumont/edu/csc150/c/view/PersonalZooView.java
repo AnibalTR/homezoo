@@ -76,7 +76,6 @@ public class  PersonalZooView {
         showMessage("[0] Exit");
     }
 
-
     public void displayBirdClass() {
         for (int i = 0; i < AnimalTypes.BirdSpecies.values().length; i++) {
             showMessage(String.format("[%d] %s", i + 1, AnimalTypes.BirdSpecies.values()[i]));
@@ -97,7 +96,6 @@ public class  PersonalZooView {
         }
         showMessage("[0] Exit");
     }
-
 
     public void displayMammalClass() {
         for (int i = 0; i < AnimalTypes.MammalSpecies.values().length; i++) {
@@ -134,7 +132,6 @@ public class  PersonalZooView {
         showMessage("[0] Exit");
     }
 
-
     public void displayReptileClass() {
         for (int i = 0; i < AnimalTypes.ReptileSpecies.values().length; i++) {
             showMessage(String.format("[%d] %s", i + 1, AnimalTypes.ReptileSpecies.values()[i]));
@@ -142,111 +139,30 @@ public class  PersonalZooView {
         showMessage("[0] Exit");
     }
 
-    /*// reptiles
-
-
-
-//// snakes
-
-////// ball python
-
-////// corn snake
-
-////// rosy boa
-
-
-
-//// lizards
-
-////// bearded dragon
-
-////// leopard ghecko
-
-////// iguanas
-
-
-
-//// turtles
-
-////// spiny softshell turtle
-
-////// red eared slider
-
-////// box turtle
-
-
-
-// mammals
-
-
-
-//// rodents
-
-////// ferret
-
-////// rat
-
-////// skunk
-
-////// hedgehog
-
-
-
-//// misc mammals
-
-////// fenic fox
-
-////// raccoon
-
-////// bear
-
-
-
-//// dogs
-
-////// english bernard
-
-////// german shepard
-
-////// yorksher terrier
-
-////// pitbull
-
-////// greyhound
-
-
-
-//// felines
-
-////// sphynx cat
-
-////// persian
-
-////// garfield
-
-////// korean bobtail
-
-
-
-// birds
-
-
-
-//// parrots
-
-////// scarlet macaw
-
-////// grey parrot
-
-////// pallid parrot
-
-
-
-//// misc birds
-
-////// crows
-
-////// toucans
-
-////// pidgeons*/
+    public void displaySnakeClass() {
+        for (int i = 0; i < AnimalTypes.SnakeSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.SnakeSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayTurtleClass() {
+        for (int i = 0; i < AnimalTypes.TurtleSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.TurtleSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayLizardClass() {
+        for (int i = 0; i < AnimalTypes.LizardSpecies.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.LizardSpecies.values()[i]));
+        }
+        showMessage("[0] Exit");
+    }
+
+    public void displayPetColors() {
+        for (int i = 0; i < AnimalTypes.Colors.values().length; i++) {
+            showMessage(String.format("[%d] %s", i + 1, AnimalTypes.Colors.values()[i]));
+        }
+    }
 }
