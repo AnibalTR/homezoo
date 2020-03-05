@@ -512,24 +512,21 @@ public class PersonalZooController {
         personalZooUI.showMessage(String.format("Are you sure you would like to purchase a %s?\r\n[0] yes\r\n[1] no", selectedAnimal));
         int selection = personalZooUI.getUserSelection(0,1);
         int cost = store.getPriceOfPet(selectedAnimal);
-            switch(selection) {
-                case 0:
-                    // hello
-                    exit = false;
-                    leaveQuestion = true;
-                    break;
-                case 1:
-                    exit = true;
-                    leaveQuestion = true;
-                    break;
-            }
+
+        if (selection == 0 && hasEnvironment && newUser.getMoney() - cost > 0)
+            getPet(selectedAnimal);
+        else if (!hasEnvironment)
+            personalZooUI.showMessage(String.format("You do not have the environment necessary for the %s", selectedAnimal));
+        else if (newUser.getMoney() - cost < 0)
+            personalZooUI.showMessage(String.format("You do not have enough money for the %s", selectedAnimal));
+
 //////        if (!hasEnvironment) {
 //            System.out.println(String.format("You do not own the environment required for the %s", selectedAnimal));
 //            exit = true;
 //        } else {
 //            if (selection == 1) {
 //                exit = true;
-//            } else if (newUser.getMoney() - cost > 0) {
+//            } else if () {
 //                personalZooUI.showMessage(String.format("You can afford the %s, would you like to purchase it?\r\n[0] yes\r\n[1] no", selectedAnimal));
 //                int purchaseChoice = personalZooUI.getUserSelection(0, 1);
 //                switch(purchaseChoice) {
@@ -555,6 +552,7 @@ public class PersonalZooController {
     }
 
     private void getPet(AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+        personalZooUI.showMessage("======= Pick a Color for your Pet =======");
         personalZooUI.displayPetColors();
         int selection = personalZooUI.getUserSelection(1, AnimalTypes.Colors.values().length);
         int cost = store.getPriceOfPet(selectedAnimal);
