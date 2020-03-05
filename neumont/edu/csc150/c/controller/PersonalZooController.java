@@ -26,7 +26,7 @@ public class PersonalZooController {
     public void start() throws IOException {
         boolean exitRequested = false;
         do {
-            personalZooUI.showMessage("======= Main Menu =======");
+            personalZooUI.showMessage("======= Login & SignUp =======");
             personalZooUI.displayMainMenu();
             int selection = personalZooUI.getUserSelection(0, 2);
             switch(selection){
@@ -84,6 +84,7 @@ public class PersonalZooController {
     private void play() throws IOException {
         boolean leaveGameMenu = false;
         do{
+            personalZooUI.showMessage("======= Main Menu =======");
             personalZooUI.displayPlayMenu();
             int userInput = personalZooUI.getUserSelection(0, 4);
             switch(userInput) {
