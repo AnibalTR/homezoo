@@ -510,10 +510,22 @@ public class PersonalZooController {
     }
 
     private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) {
+        personalZooUI.showMessage(String.format("How much %s food would you like? (1 - 3)\r\n[0] Exit", selectedAnimal));
+        int selection = personalZooUI.getUserSelection(0,3);
 
+        switch(selection) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 
-    private void buyEnvironment(boolean exit, AnimalTypes.AllAnimals selectedAnimal) {
+    private void buyEnvironment(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
 
     }
 
@@ -530,26 +542,6 @@ public class PersonalZooController {
             personalZooUI.showMessage(String.format("You do not have the environment necessary for the %s", selectedAnimal));
         else if (newUser.getMoney() - cost < 0)
             personalZooUI.showMessage(String.format("You do not have enough money for the %s", selectedAnimal));
-
-//////        if (!hasEnvironment) {
-//            System.out.println(String.format("You do not own the environment required for the %s", selectedAnimal));
-//            exit = true;
-//        } else {
-//            if (selection == 1) {
-//                exit = true;
-//            } else if () {
-//                personalZooUI.showMessage(String.format("You can afford the %s, would you like to purchase it?\r\n[0] yes\r\n[1] no", selectedAnimal));
-//                int purchaseChoice = personalZooUI.getUserSelection(0, 1);
-//                switch(purchaseChoice) {
-//                    case 0:
-//                        getPet(selectedAnimal);
-//                        break;
-//                    case 1:
-//                        exit = true;
-//                        break;
-//                }
-//            }
-//        }
     }
 
     private boolean checkUserEnvironments(AnimalTypes.AllAnimals selectedAnimal) {
