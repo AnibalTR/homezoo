@@ -52,10 +52,13 @@ public class PersonalZooController {
             if (e.getPet() == null) {
                 continue;
             } else {
-                boolean petUpdated = false;
+                boolean petTimeUpdated = false;
+                boolean petCleanUpdated = false;
+                boolean petFeedUpdated = false;
                 Pet pet = e.getPet();
                 long now = date.getTime();
                 int day = 86000000;
+                long ellapseOfTime = now;
                 long lastPlayTime = pet.getLastPlayTime();
                 long lastCleaningTime = pet.getLastCleaning();
                 long lastFeedingTime = pet.getLastFeedingTime();
@@ -64,19 +67,28 @@ public class PersonalZooController {
                     if (lastPlayTime < now - day) {
                         pet.setAttention(pet.getAttention() - 1);
                         lastPlayTime -= day;
-                    } else if (lastCleaningTime < now - day) {
+                    } else {
+                        petTimeUpdated = true;
+                    }
+                    if (lastCleaningTime < now - day) {
                         pet.setMessiness(pet.getMessiness() - 1);
                         lastCleaningTime -= day;
-                    } else if (lastFeedingTime < now - day) {
+                    } else {
+                        petFeedUpdated = true;
+                    }
+                    if (lastFeedingTime < now - day) {
                         pet.setHunger(pet.getHunger() - 1);
                         lastFeedingTime -= day;
-                    } else if (pet.getLastSleepTime() % day > day / 2) {
-                        pet.setAsleep(!pet.isAsleep());
                     } else {
-                        petUpdated = true;
+                        petCleanUpdated = true;
                     }
-                } while (!petUpdated);
-                pet.setLastSleepTime(now - pet.getLastSleepTime() % (day / 2));
+                } while (!petTimeUpdated && !petCleanUpdated && !petFeedUpdated);
+                if (pet.getLastSleepTime() % day < day / 2) {
+                    pet.setAsleep(false);
+                    pet.setLastSleepTime(now - pet.getLastSleepTime() % (day / 2));
+                }
+                else
+                    pet.setAsleep(true);
             }
         }
     }
@@ -555,8 +567,16 @@ public class PersonalZooController {
         int selection = personalZooUI.getUserSelection(1, AnimalTypes.Colors.values().length);
         int cost = store.getPriceOfPet(selectedAnimal);
         newUser.setMoney(newUser.getMoney() - cost);
+        personalZooUI.showMessage(String.format("What would you like to name your %s?", selectedAnimal));
+        String petName = personalZooUI.readString(3);
         Pet pet = store.buyPet(selectedAnimal, AnimalTypes.Colors.values()[selection - 1]);
-
+        pet.setName(petName);
+        for (Environment e : newUser.getEnvironments()) {
+            if (e.getAnimalsCage().toString().equals(pet.getAnimalType().toString()) && e.getPet() == null) {
+                e.setPet(pet);
+                break;
+            }
+        }
     }
 
     private void signUp() throws IOException {
