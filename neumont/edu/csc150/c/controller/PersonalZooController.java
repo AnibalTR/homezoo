@@ -224,6 +224,7 @@ public class PersonalZooController {
     }
 
     private void goToStore(boolean exit) throws IOException {
+        boolean exitingStore = false;
         do {
             int selection = 0;
             personalZooUI.showMessage("======= Store =======");
@@ -231,21 +232,19 @@ public class PersonalZooController {
             selection = personalZooUI.getUserSelection(0, 4);
             switch (selection) {
                 case 0:
-                    exit = true;
+                    exitingStore = true;
                     break;
                 case 1:
                 case 2:
                 case 3:
-                    mainStoreMenuSelector(exit, selection);
-                    mainStoreMenuSelector(exit, selection);
-                    mainStoreMenuSelector(exit, selection);
+                    mainStoreMenuSelector(exitingStore, selection);
                     break;
                 case 4:
                     sellPet();
                     break;
             }
-            exit=true;
-        } while(!exit);
+
+        } while(!exitingStore);
     }
 
     private void sellPet() {}
@@ -257,7 +256,6 @@ public class PersonalZooController {
             int selection = personalZooUI.getUserSelection(0, 3);
             switch (selection) {
                 case 0:
-                    exit = true;
                     break;
                 case 1:
                     displayReptileClass(exit, currentDirectory);
@@ -269,6 +267,7 @@ public class PersonalZooController {
                     displayBirdClass(exit, currentDirectory);
                     break;
             }
+            exit=true;
         } while (!exit);
     }
 
@@ -423,8 +422,6 @@ public class PersonalZooController {
 
             switch(selection) {
                 case 0:
-                    exit = true;
-
                     break;
                 case 1:
                     displaySnakes(exit, currentDirectory);
@@ -435,6 +432,7 @@ public class PersonalZooController {
                 case 3:
                     displayLizards(exit, currentDirectory);
             }
+            exit = true;
         } while(!exit);
     }
 
