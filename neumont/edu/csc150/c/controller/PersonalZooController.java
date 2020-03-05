@@ -512,14 +512,30 @@ public class PersonalZooController {
     private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         personalZooUI.showMessage(String.format("How much %s food would you like? (1 - 3)\r\n[0] Exit", selectedAnimal));
         int selection = personalZooUI.getUserSelection(0,3);
+<<<<<<< HEAD
+=======
+        int foodCost = store.getPriceOfPet(selectedAnimal)/10;
+        int totalCost = foodCost*selection;
+
+>>>>>>> cd2f2c66dc8a05615493cea74bcb7de0526ccc12
         switch(selection) {
             case 0:
+                exit = true;
                 break;
             case 1:
-                break;
             case 2:
-                break;
             case 3:
+                if(newUser.getMoney() - totalCost > 0){
+                    List<Food> foodList;
+                    Food food = store.buyFood(selection,selectedAnimal);
+                    foodList = newUser.getFood();
+                    foodList.add(food);
+                    newUser.setFood(foodList);
+                    newUser.setMoney(newUser.getMoney() - totalCost);
+                }
+                else{
+                    personalZooUI.showMessage(String.format("you do not currently have enough money for %d %s food", selection,selectedAnimal));
+                }
                 break;
         }
     }
