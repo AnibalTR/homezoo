@@ -9,16 +9,30 @@ import java.io.InputStreamReader;
 public class  PersonalZooView {
 
     private BufferedReader userIn;
+    private String gameTitle =
+                    "⬛\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D" +
+                            "\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D" +
+                            "\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D" +
+                            "\uDD3B\uD83D\uDD3B⬛\r\n" +
+                    "⬛    Welcome To Your Personal Zoo   ⬛\r\n" +
+                    "⬛\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D" +
+                            "\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D" +
+                            "\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D" +
+                            "\uDD3A\uD83D\uDD3A⬛";
+    private String endTagFancyPart ="\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38" +
+            "\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38" +
+            "\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38" +
+            "\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38";
 
     public PersonalZooView() {
         userIn = new BufferedReader(new InputStreamReader(System.in));
     }
 
     public void displayMainMenu() throws IOException {
-        showMessage("======= Welcome to Your Personal Zoo =======" + "\r\n"+
-                "\r\n"+"              Press 1 to Login" +
-                "\r\n" +"             Press 2 to Sign up" +
-                "\r\n" +"              To exit press 0\r\n");
+        showMessage( gameTitle + "\r\n"+
+                "\r\n"+"            Press 1 to Login" +
+                "\r\n" +"           Press 2 to Sign up" +
+                "\r\n" +"            To exit press 0\r\n"+"\r\n"+endTagFancyPart);
     }
 
     public void displayPlayMenu() {
@@ -27,6 +41,9 @@ public class  PersonalZooView {
 
     public void displayCaringMenu(String petName){
         showMessage(String.format("[1] Feed %s\r\n[2] Play With %s\r\n[3] Clean %s\r\n[0] Exit",petName, petName, petName));
+    }
+    public void displayFancyThingy(){
+        showMessage(endTagFancyPart);
     }
 
     public int getUserSelection(int min, int max) throws IOException {
@@ -46,7 +63,7 @@ public class  PersonalZooView {
     }
 
     public String readString(int minLength) throws IOException {
-        while (true) {
+            while (true) {
             String input = userIn.readLine();
             if (input.length() < minLength) {
                 showError("The name must be at least" + minLength + " characters");
@@ -167,5 +184,10 @@ public class  PersonalZooView {
         for (int i = 0; i < AnimalTypes.Colors.values().length; i++) {
             showMessage(String.format("[%d] %s", i + 1, AnimalTypes.Colors.values()[i]));
         }
+    }
+
+    public void displayUserInfo(String name, double cash) {
+//        showMessage(String.format("==== User: %s ==== Cash: %d ====",name,cash));
+        showMessage("User: "+name+"   Cash: "+cash);
     }
 }
