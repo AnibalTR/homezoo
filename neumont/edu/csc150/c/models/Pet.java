@@ -58,14 +58,19 @@ public class Pet implements PetInterface {
     }
 
     public int getHunger() {
+
         return hunger;
     }
 
     public void setHunger(int hunger) {
+        if(hunger > 10){
+            hunger = 10;
+        }
         this.hunger = hunger;
     }
 
     public int getAttention() {
+
         return attention;
     }
 
