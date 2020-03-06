@@ -168,4 +168,9 @@ public class  PersonalZooView {
             showMessage(String.format("[%d] %s", i + 1, AnimalTypes.Colors.values()[i]));
         }
     }
+
+    public void displayUserInfo(String name, double cash) {
+//        showMessage(String.format("==== User: %s ==== Cash: %d ====",name,cash));
+        showMessage("==== User: "+name+" ==== Cash: "+cash+" ====");
+    }
 }

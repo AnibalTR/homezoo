@@ -94,6 +94,7 @@ public class PersonalZooController {
     private void play() throws IOException {
         boolean leaveGameMenu = false;
         do{
+            personalZooUI.displayUserInfo(newUser.getUserName(), newUser.getMoney());
             personalZooUI.showMessage("======= Main Menu =======");
             personalZooUI.displayPlayMenu();
             int userInput = personalZooUI.getUserSelection(0, 4);
@@ -280,14 +281,13 @@ public class PersonalZooController {
         } while(!exitingStore);
     }
 
-    // Almost done with this ---------------------------------------------------------
-
     private void sellPet() throws IOException {
         personalZooUI.showMessage("======= Pets you're Selling =======");
+        Pet sellPet = null;
         int petAmount = -1;
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
             if (newUser.getEnvironments().get(i).getPet() != null) {
-                Pet sellPet = newUser.getEnvironments().get(i).getPet();
+                sellPet = newUser.getEnvironments().get(i).getPet();
                 int sellPrice = store.sellPet(sellPet.getAnimalType(),sellPet.getStars());
                 personalZooUI.showMessage((String.format("[%d] %s - Type: %s - Sell Price: %d" , i + 1,sellPet.getName(),sellPet.getAnimalType(),sellPrice)));
                 petAmount = i;
@@ -296,10 +296,9 @@ public class PersonalZooController {
         personalZooUI.showMessage("Which pet would you like to sell? Or press 0 to exit");
         int selection = personalZooUI.getUserSelection(1, petAmount + 1);
         newUser.getEnvironments().remove(selection - 1);
-
-        // In this area add the charge feature and save feature when a pet is sold
-
-
+        newUser.setMoney(newUser.getMoney() + store.getPriceOfPet(sellPet.getAnimalType()));
+        personalZooUI.showMessage("-$"+store.getPriceOfPet(sellPet.getAnimalType()));
+        saveText(newUser);
     }
 
     private void mainStoreMenuSelector(boolean exit, int currentDirectory) throws IOException {
