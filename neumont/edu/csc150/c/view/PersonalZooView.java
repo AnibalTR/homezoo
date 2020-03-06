@@ -15,7 +15,10 @@ public class  PersonalZooView {
     }
 
     public void displayMainMenu() throws IOException {
-        showMessage("Welcome to Personal Zoo!!!\r\n"+"Press 1 to Login\r\n" +"Press 2 to Sign up\r\n" +"To exit press 0\r\n");
+        showMessage("======= Welcome to Your Personal Zoo =======" + "\r\n"+
+                "\r\n"+"              Press 1 to Login" +
+                "\r\n" +"             Press 2 to Sign up" +
+                "\r\n" +"              To exit press 0\r\n");
     }
 
     public void displayPlayMenu() {

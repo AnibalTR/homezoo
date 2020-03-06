@@ -25,7 +25,7 @@ public class PersonalZooController {
     public void start() throws IOException {
         boolean exitRequested = false;
         do {
-            personalZooUI.showMessage("======= Login & SignUp =======");
+            personalZooUI.showMessage("       ======= Login & SignUp =======");
             personalZooUI.displayMainMenu();
             int selection = personalZooUI.getUserSelection(0, 2);
             switch(selection){
@@ -247,9 +247,9 @@ public class PersonalZooController {
         personalZooUI.showMessage("========Animals======");
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
             if (newUser.getEnvironments().get(i).getPet() == null) {
-                personalZooUI.showMessage(String.format("[%d] Environment Suitable for : %s", i + 1, newUser.getEnvironments().get(i).getAnimalsCage()));
+                personalZooUI.showMessage(String.format("[%d] Environment Suitable for : %s \r\n", i + 1, newUser.getEnvironments().get(i).getAnimalsCage()));
             } else {
-                personalZooUI.showMessage(String.format("[%d] %s", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
+                personalZooUI.showMessage(String.format("[%d] %s \r\n", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
             }
         }
         personalZooUI.showMessage("Press enter to Exit");
@@ -340,7 +340,7 @@ public class PersonalZooController {
 
     private void displayMiscBirds(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("======= Parrots =======");
+            personalZooUI.showMessage("======= Misc. Birds =======");
             personalZooUI.displayMiscBirdClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.MiscBirdSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -355,7 +355,7 @@ public class PersonalZooController {
 
     private void displayMammalClass(boolean exit, int currentDirectory) throws IOException {
         do {
-            personalZooUI.showMessage("======= Mammals =======");
+            personalZooUI.showMessage("======= MAMMALS =======");
             personalZooUI.displayMammalClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.MammalSpecies.values().length);
 
@@ -381,7 +381,7 @@ public class PersonalZooController {
 
     private void displayFeline(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("======= Rodents =======");
+            personalZooUI.showMessage("======= Cats =======");
             personalZooUI.displayFelineClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.FelineSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -395,7 +395,7 @@ public class PersonalZooController {
 
     private void displayDogs(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("======= Rodents =======");
+            personalZooUI.showMessage("======= Dogs =======");
             personalZooUI.displayDogClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.DogSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -409,7 +409,7 @@ public class PersonalZooController {
 
     private void displayMiscMammals(boolean exit, int currentDirectory) throws IOException {
         do{
-            personalZooUI.showMessage("======= Miscellaneous Mammals =======");
+            personalZooUI.showMessage("======= Misc. Mammals =======");
             personalZooUI.displayMiscMammalClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.MiscMammalSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
@@ -579,6 +579,7 @@ public class PersonalZooController {
     }
 
     private void getPet(AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+
         personalZooUI.showMessage("======= Pick a Color for your Pet =======");
         personalZooUI.displayPetColors();
         int selection = personalZooUI.getUserSelection(1, AnimalTypes.Colors.values().length);
