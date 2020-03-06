@@ -25,7 +25,6 @@ public class PersonalZooController {
     public void start() throws IOException {
         boolean exitRequested = false;
         do {
-            personalZooUI.showMessage("       ======= Login & SignUp =======");
             personalZooUI.displayMainMenu();
             int selection = personalZooUI.getUserSelection(0, 2);
             switch(selection){
@@ -95,7 +94,7 @@ public class PersonalZooController {
         boolean leaveGameMenu = false;
         do{
             personalZooUI.displayUserInfo(newUser.getUserName(), newUser.getMoney());
-            personalZooUI.showMessage("======= Main Menu =======");
+            personalZooUI.showMessage("=~=~=~=~ Main Menu ~=~=~=~=");
             personalZooUI.displayPlayMenu();
             int userInput = personalZooUI.getUserSelection(0, 4);
             switch(userInput) {
@@ -216,7 +215,7 @@ public class PersonalZooController {
 
     private void viewInventory(boolean exit) throws IOException {
         do{
-            personalZooUI.showMessage("=====Inventory=====");
+            personalZooUI.showMessage("======= Inventory =======");
             personalZooUI.displayViewInventoryMenu();
             int userInput = personalZooUI.getUserSelection(0, 2);
             switch (userInput) {
@@ -224,7 +223,7 @@ public class PersonalZooController {
                     exit = true;
                     break;
                 case 1:
-                    viewPetStats();
+                    viewPetStats(exit);
                     break;
                 case 2:
                     viewFoodSupply();
@@ -244,24 +243,27 @@ public class PersonalZooController {
         personalZooUI.readString(0);
     }
 
-    private void viewPetStats() throws IOException {
-        personalZooUI.showMessage("========Animals======");
+    private void viewPetStats(boolean exit) throws IOException {
+        personalZooUI.showMessage("=~=~=~=~ Animals ~=~=~=~=");
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
             if (newUser.getEnvironments().get(i).getPet() == null) {
-                personalZooUI.showMessage(String.format("[%d] Environment Suitable for : %s \r\n", i + 1, newUser.getEnvironments().get(i).getAnimalsCage()));
+                personalZooUI.showMessage(String.format("[%d] Environment Suitable for : %s\r\n", i + 1, newUser.getEnvironments().get(i).getAnimalsCage()));
             } else {
-                personalZooUI.showMessage(String.format("[%d] %s \r\n", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
+                personalZooUI.showMessage(String.format("[%d] %s\r\n", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
             }
         }
-        personalZooUI.showMessage("Press enter to Exit");
-        personalZooUI.readString(0);
+        personalZooUI.showMessage("Press Enter to Exit");
+        String selection = personalZooUI.readString(0);
+        if (selection.equals("")){
+            exit = true;
+        }
     }
 
     private void goToStore(boolean exit) throws IOException {
         boolean exitingStore = false;
         do {
             int selection = 0;
-            personalZooUI.showMessage("======= Store =======");
+            personalZooUI.showMessage("=~=~=~=~ Store ~=~=~=~=");
             personalZooUI.displayStoreMainMenu();
             selection = personalZooUI.getUserSelection(0, 4);
             switch (selection) {
@@ -303,7 +305,7 @@ public class PersonalZooController {
 
     private void mainStoreMenuSelector(boolean exit, int currentDirectory) throws IOException {
         do {
-            personalZooUI.showMessage("======= Animal Class =======");
+            personalZooUI.showMessage("=~=~=~=~ Animal Class ~=~=~=~=");
             personalZooUI.displayStoreSubMenu();
             int selection = personalZooUI.getUserSelection(0, 3);
             switch (selection) {
@@ -325,7 +327,7 @@ public class PersonalZooController {
 
     private void displayBirdClass(boolean exit, int currentDirectory) throws IOException {
         do {
-            personalZooUI.showMessage("======= BIRDS =======");
+            personalZooUI.showMessage("=~=~=~=~ Birds ~=~=~=~=");
             personalZooUI.displayBirdClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.BirdSpecies.values().length);
 
@@ -374,7 +376,7 @@ public class PersonalZooController {
 
     private void displayMammalClass(boolean exit, int currentDirectory) throws IOException {
         do {
-            personalZooUI.showMessage("======= MAMMALS =======");
+            personalZooUI.showMessage("=~=~=~=~ Mammals ~=~=~=~=");
             personalZooUI.displayMammalClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.MammalSpecies.values().length);
 
@@ -456,7 +458,7 @@ public class PersonalZooController {
 
     private void displayReptileClass(boolean exit, int currentDirectory) throws IOException {
         do {
-            personalZooUI.showMessage("======= REPTILES =======");
+            personalZooUI.showMessage("=~=~=~=~ Reptiles ~=~=~=~=");
             personalZooUI.displayReptileClass();
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.ReptileSpecies.values().length);
 
@@ -575,12 +577,11 @@ public class PersonalZooController {
 
     private void buyPet(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         boolean hasEnvironment = checkUserEnvironments(selectedAnimal);
-        boolean leaveQuestion = false;
-        personalZooUI.showMessage(String.format("Are you sure you would like to purchase a %s?\r\n[0] yes\r\n[1] no", selectedAnimal));
+        personalZooUI.showMessage(String.format("Are you sure you would like to purchase a %s?\r\n[1] yes\r\n[0] no", selectedAnimal));
         int selection = personalZooUI.getUserSelection(0,1);
         int cost = store.getPriceOfPet(selectedAnimal);
 
-        if (selection == 0 && hasEnvironment && newUser.getMoney() - cost > 0)
+        if (selection == 1 && hasEnvironment && newUser.getMoney() - cost > 0)
             getPet(selectedAnimal);
         else if (!hasEnvironment)
             personalZooUI.showMessage(String.format("You do not have the environment necessary for the %s", selectedAnimal));
@@ -619,6 +620,7 @@ public class PersonalZooController {
     }
 
     private void signUp() throws IOException {
+        personalZooUI.showMessage("=~=~=~=~ SignUp ~=~=~=~=");
         int minNameLen = 3;
         boolean userDoesNotExist;
         String userName;
@@ -628,7 +630,7 @@ public class PersonalZooController {
             userName = personalZooUI.readString(minNameLen);
             userDoesNotExist = searchEntry(userName);
             if (!userDoesNotExist){
-                personalZooUI.showMessage("User created");
+                personalZooUI.showMessage("Username passed");
             } else {
                 personalZooUI.showError("Username is taken");
             }
@@ -641,6 +643,7 @@ public class PersonalZooController {
     }
 
     private void login() throws IOException {
+        personalZooUI.showMessage("=~=~=~=~ Login ~=~=~=~=\r\nTo exit type 'exit'\r\n");
         boolean userNamePasses = false;
         boolean userPWPasses = false;
         boolean credentialsMatch = false;
@@ -650,7 +653,8 @@ public class PersonalZooController {
 
         while (credentialsMatch == false) {
             while (userNamePasses == false) {
-                personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters\r\nTo exit type 'exit'", minNameLen));
+//                personalZooUI.showMessage(String.format("Please enter a username with a minimum of %d characters\r\nTo exit type 'exit'", minNameLen));
+                personalZooUI.showMessage("Enter your Username");
                 userName = personalZooUI.readString(minNameLen);
                 if (userName.toLowerCase().equals("exit")) {
                     return;
@@ -661,8 +665,8 @@ public class PersonalZooController {
                 }
             }
             while (userPWPasses == false) {
-                personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters\r\n" +
-                        "To exit type 'exit'", minNameLen));
+//                personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters\r\nTo exit type 'exit'", minNameLen));
+                personalZooUI.showMessage("Enter your Password");
                 password = personalZooUI.readString(3);
                 if (password.toLowerCase().equals("exit")) {
                     return;
