@@ -15,7 +15,7 @@ public class PersonalZooController {
     private Date date = new Date();
     private Store store = new Store();
     private User newUser;
-
+    private int day = 86000000;
     public PersonalZooController() {
         File folder = new File(usersFolder);
         if(!folder.exists())
@@ -56,7 +56,6 @@ public class PersonalZooController {
                 boolean petFeedUpdated = false;
                 Pet pet = e.getPet();
                 long now = date.getTime();
-                int day = 86000000;
                 long ellapseOfTime = now;
                 long lastPlayTime = pet.getLastPlayTime();
                 long lastCleaningTime = pet.getLastCleaning();
@@ -141,8 +140,8 @@ public class PersonalZooController {
     }
 
     private void managePet(Pet pet) throws IOException {
-        personalZooUI.showMessage(pet.toString());
         if(!pet.isAsleep()) {
+            personalZooUI.showMessage(pet.toString());
             personalZooUI.displayCaringMenu(pet.getName());
             int selection = personalZooUI.getUserSelection(0,3);
             switch(selection){
@@ -153,41 +152,62 @@ public class PersonalZooController {
                     playPet(pet);
                     break;
                 case 3:
+                    cleanPet(pet);
                     break;
                 case 0:
                     break;
             }
         } else {
-            personalZooUI.showError(String.format("%s is asleep, come back in a while",pet.getName()));
+            personalZooUI.showMessage(String.format("%s is asleep, come back in a while\r\n", pet.getName()));
+        }
+    }
+
+    private void cleanPet(Pet pet) {
+        if (pet.getLastPlayTime() + day / 12 > date.getTime()) {
+            personalZooUI.showMessage(String.format("%s's environment is not dirty", pet.getName()));
+        } else if (pet.getMessiness() < 10) {
+            pet.setMessiness(pet.getMessiness() + 1);
+            pet.setLastCleaning(date.getTime());
+            personalZooUI.showMessage(String.format("You cleaned %s's cage", pet.getName()));
+        } else {
+            personalZooUI.showMessage(String.format("%s's environment is not dirty", pet.getName()));
         }
     }
 
     private void playPet(Pet pet) {
-        if (pet.getAttention() < 10) {
+        if (pet.getLastPlayTime() + day / 24 > date.getTime()) {
+            personalZooUI.showMessage(String.format("You need to wait to play with %s", pet.getName()));
+        } else if (pet.getAttention() < 10) {
             pet.setAttention(pet.getAttention() + 1);
-//            pet.setLastPlayTime(LocalDate.);
+            pet.setLastPlayTime(date.getTime());
+            personalZooUI.showMessage(String.format("You played with %s", pet.getName()));
+        } else {
+            personalZooUI.showMessage(String.format("%s is all happy", pet.getName()));
         }
     }
 
     private void feedPet(Pet pet) throws IOException {
         List<Food> food = new ArrayList<>();
-        personalZooUI.showMessage(String.format("%s : %s", pet.getName(), pet.getAnimalType()));
+//        personalZooUI.showMessage(String.format("%s : %s", pet.getName(), pet.getAnimalType()));
         for (int i = 0; i < newUser.getFood().size(); i++) {
             Food petFood = newUser.getFood().get(i);
-            if(pet.getAnimalType().equals(petFood.getFoodType()))
+            if(pet.getAnimalType().toString().equals(petFood.getFoodType().toString()))
                 food.add(petFood);
         }
         if (food.size() < 1)
-            personalZooUI.showMessage("You do not currently have food for this pet");
+            personalZooUI.showMessage(String.format("You do not currently have food for %s", pet.getName()));
+        else if (pet.getLastFeedingTime() + day / 8 > date.getTime())
+            personalZooUI.showMessage(String.format("%s is not currently hungry", pet.getName()));
         else {
             for (int i = 0; i < food.size(); i++) {
-                personalZooUI.showMessage(String.format("[%d] %s", i + 1, newUser.getFood().get(i).toString()));
+                personalZooUI.showMessage(String.format("[%d] %s", i + 1, food.get(i).toString()));
             }
             int selection = personalZooUI.getUserSelection(1, food.size());
             for (int i = 0; i < newUser.getFood().size(); i++) {
-                if (newUser.getFood().get(i).toString().equals(food.get(selection))) {
+                if (newUser.getFood().get(i).getFoodType().toString().equals(food.get(selection - 1).getFoodType().toString()) && newUser.getFood().get(i).getAmountOfFood() == food.get(selection - 1).getAmountOfFood()) {
                     newUser.getFood().remove(i);
-                    pet.eat(food.get(selection));
+                    pet.setLastFeedingTime(date.getTime());
+                    pet.setHunger(pet.getHunger() + food.get(selection - 1).getAmountOfFood());
                 }
             }
         }

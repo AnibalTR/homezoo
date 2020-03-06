@@ -23,7 +23,7 @@ public class  PersonalZooView {
     }
 
     public void displayCaringMenu(String petName){
-        showMessage(String.format("[1] Feed %s\r\n[2] Play With %s\r\n[3] Clean %s\r\n[0] Exit",petName));
+        showMessage(String.format("[1] Feed %s\r\n[2] Play With %s\r\n[3] Clean %s\r\n[0] Exit",petName, petName, petName));
     }
 
     public int getUserSelection(int min, int max) throws IOException {

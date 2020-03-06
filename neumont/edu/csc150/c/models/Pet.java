@@ -162,7 +162,7 @@ public class Pet implements PetInterface {
 
     @Override
     public String toString() {
-        return String.format("Pet Name: %s\r\nAnimal Type: %s\r\nColor: %s\r\nHunger level - %d/10\r\nAttention Level - %d/10\r\nMessiness Level - %d/10\r\nOver All Comfort: %d/5\r\nIs Asleep: %s",
+        return String.format("Pet Name: %s\r\nAnimal Type: %s\r\nColor: %s\r\nHunger level - %d/10\r\nAttention Level - %d/10\r\nMessiness Level - %d/10\r\nOver All Comfort: %d/5\r\nIs Asleep: %s\r\n",
                 this.getName(),
                 this.getAnimalType(),
                 this.getColor(),
