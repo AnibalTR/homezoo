@@ -15,6 +15,7 @@ public class PersonalZooController {
     private Date date = new Date();
     private Store store = new Store();
     private User newUser;
+    int overAllHealth;
     private int day = 86000000;
     public PersonalZooController() {
         File folder = new File(usersFolder);
@@ -25,7 +26,7 @@ public class PersonalZooController {
     public void start() throws IOException {
         boolean exitRequested = false;
         do {
-            personalZooUI.showMessage("       ======= Login & SignUp =======");
+            personalZooUI.showMessage("\r\n       ======= Login & SignUp =======");
             personalZooUI.displayMainMenu();
             int selection = personalZooUI.getUserSelection(0, 2);
             switch(selection){
@@ -56,38 +57,40 @@ public class PersonalZooController {
                 boolean petFeedUpdated = false;
                 Pet pet = e.getPet();
                 long now = date.getTime();
-                long ellapseOfTime = now;
                 long lastPlayTime = pet.getLastPlayTime();
                 long lastCleaningTime = pet.getLastCleaning();
                 long lastFeedingTime = pet.getLastFeedingTime();
 
                 do {
-                    if (lastPlayTime < now - day) {
+                    if (lastPlayTime < now - (day / 6)) {
                         pet.setAttention(pet.getAttention() - 1);
-                        lastPlayTime -= day;
+                        lastPlayTime += day / 6;
                     } else {
                         petTimeUpdated = true;
                     }
-                    if (lastCleaningTime < now - day) {
+                    if (lastCleaningTime < now - (day / 6)) {
                         pet.setMessiness(pet.getMessiness() - 1);
-                        lastCleaningTime -= day;
+                        lastCleaningTime += day / 6;
                     } else {
                         petFeedUpdated = true;
                     }
-                    if (lastFeedingTime < now - day) {
+                    if (lastFeedingTime < now - (day / 8)) {
                         pet.setHunger(pet.getHunger() - 1);
-                        lastFeedingTime -= day;
+                        lastFeedingTime += day / 8;
                     } else {
                         petCleanUpdated = true;
                     }
                 } while (!petTimeUpdated && !petCleanUpdated && !petFeedUpdated);
-                if (pet.getLastSleepTime() % day < day / 2) {
+                if (pet.getLastSleepTime() % day / 24 < day / 24) {
                     pet.setAsleep(false);
-                    pet.setLastSleepTime(now - pet.getLastSleepTime() % (day / 2));
+                    pet.setLastSleepTime(now - pet.getLastSleepTime() % (day / 24));
                 }
                 else
                     pet.setAsleep(true);
+                overAllHealth = Math.min((pet.getAttention() + pet.getMessiness() + pet.getHunger()) / 6, 5);
+                pet.setStars(overAllHealth);
             }
+
         }
     }
 
@@ -109,6 +112,7 @@ public class PersonalZooController {
                     break;
                 case 2:
                     viewInventory(leaveGameMenu);
+                    personalZooUI.readString(0);
                     break;
                 case 3:
                     managePets(leaveGameMenu);
@@ -249,11 +253,9 @@ public class PersonalZooController {
             if (newUser.getEnvironments().get(i).getPet() == null) {
                 personalZooUI.showMessage(String.format("[%d] Environment Suitable for : %s \r\n", i + 1, newUser.getEnvironments().get(i).getAnimalsCage()));
             } else {
-                personalZooUI.showMessage(String.format("[%d] %s \r\n", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
+                personalZooUI.showMessage(String.format("[%d] %s", i + 1, newUser.getEnvironments().get(i).getPet().toString()));
             }
         }
-        personalZooUI.showMessage("Press enter to Exit");
-        personalZooUI.readString(0);
     }
 
     private void goToStore(boolean exit) throws IOException {
