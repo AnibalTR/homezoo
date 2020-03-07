@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PersonalZooController {
+public class PersonalZooController implements Runnable {
     private final static String usersFolder = "Users";
     private PersonalZooView personalZooUI;
     private Encryption encryptor;
@@ -16,6 +16,7 @@ public class PersonalZooController {
     private Store store;
     private User newUser;
     private int day;
+    private boolean isLoggedIn;
 
     public PersonalZooController() {
         loadComponents();
@@ -32,8 +33,7 @@ public class PersonalZooController {
             switch(selection){
                 case 0:
                     personalZooUI.showMessage("Exiting...");
-//                    return;
-                    break;
+                    return;
                 case 1:
                     login();
                     checkTimePassed();
@@ -117,6 +117,7 @@ public class PersonalZooController {
                     break;
                 case 4:
                     saveText(newUser);
+                    setUserLog();
                     leaveGameMenu = true;
                     break;
             }
@@ -648,6 +649,7 @@ public class PersonalZooController {
         String epw = encryptor.encrypt(password);
         newUser = new User(userName, epw, 100.00, new ArrayList<Environment>(), new ArrayList<Food>());
         saveText(newUser);
+        setUserLog();
     }
 
     private void login() throws IOException {
@@ -682,6 +684,7 @@ public class PersonalZooController {
                 newUser = loadJournal(userName);
                 if (newUser != null) {
                     userPWPasses = newUser.getPassword().equals(encryptor.encrypt(password));
+                    setUserLog();
                 } else {
                     personalZooUI.showError("No users found with these credentials, please check username and password");
                 }
@@ -736,11 +739,22 @@ public class PersonalZooController {
         saveText(newUser);
     }
 
+    public void setUserLog() {
+        isLoggedIn = !isLoggedIn;
+    }
+
     public void loadComponents() {
         personalZooUI = new PersonalZooView();
         encryptor = new Encryption();
         date = new Date();
         store = new Store();
         day = 86000000;
+        isLoggedIn = false;
+        run();
+    }
+
+    @Override
+    public void run() {
+        
     }
 }

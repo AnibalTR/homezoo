@@ -3,8 +3,10 @@ package neumont.edu.csc150.c.models;
 import neumont.edu.csc150.c.controller.PersonalZooController;
 import java.io.FileNotFoundException;
 
-public class ProcessorHook extends Thread {
-    private PersonalZooController pc = new PersonalZooController();
+class PetChecker implements Runnable {
+
+
+
     @Override
     public void run() {
         try {
