@@ -10,13 +10,15 @@ import java.util.List;
 
 public class PersonalZooController {
     private final static String usersFolder = "Users";
-    private PersonalZooView personalZooUI = new PersonalZooView();
-    private Encryption encryptor = new Encryption();
-    private Date date = new Date();
-    private Store store = new Store();
+    private PersonalZooView personalZooUI;
+    private Encryption encryptor;
+    private Date date;
+    private Store store;
     private User newUser;
-    private int day = 86000000;
+    private int day;
+
     public PersonalZooController() {
+        loadComponents();
         File folder = new File(usersFolder);
         if(!folder.exists())
             folder.mkdir();
@@ -81,7 +83,7 @@ public class PersonalZooController {
                 } while (!petTimeUpdated && !petCleanUpdated && !petFeedUpdated);
                 if (pet.getLastSleepTime() % day < day / 2) {
                     pet.setAsleep(false);
-                    pet.setLastSleepTime(now - pet.getLastSleepTime() % (day / 2));
+                    pet.setLastSleepTime(now - (pet.getLastSleepTime() % (day / 2)));
                 }
                 else
                     pet.setAsleep(true);
@@ -105,7 +107,7 @@ public class PersonalZooController {
                     System.exit(0);
                     break;
                 case 1:
-                    goToStore(leaveGameMenu);
+                    goToStore();
                     break;
                 case 2:
                     viewInventory(leaveGameMenu);
@@ -229,7 +231,7 @@ public class PersonalZooController {
                     exit = true;
                     break;
                 case 1:
-                    viewPetStats(exit);
+                    viewPetStats();
                     break;
                 case 2:
                     viewFoodSupply();
@@ -249,7 +251,7 @@ public class PersonalZooController {
         personalZooUI.readString(0);
     }
 
-    private void viewPetStats(boolean exit) throws IOException {
+    private void viewPetStats() throws IOException {
         personalZooUI.showMessage("=~=~=~=~ Animals ~=~=~=~=");
         for (int i = 0; i < newUser.getEnvironments().size(); i++) {
             if (newUser.getEnvironments().get(i).getPet() == null) {
@@ -261,11 +263,11 @@ public class PersonalZooController {
         personalZooUI.showMessage("Press Enter to Exit");
         String selection = personalZooUI.readString(0);
         if (selection.equals("")){
-            exit = true;
+            return;
         }
     }
 
-    private void goToStore(boolean exit) throws IOException {
+    private void goToStore() throws IOException {
         boolean exitingStore = false;
         do {
             int selection = 0;
@@ -529,18 +531,18 @@ public class PersonalZooController {
     private void buyProduct(boolean exit, int currentDirectory, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         switch(currentDirectory) {
             case 1:
-                buyPet(exit, selectedAnimal);
+                buyPet(selectedAnimal);
                 break;
             case 2:
-                buyEnvironment(exit, selectedAnimal);
+                buyEnvironment(selectedAnimal);
                 break;
             case 3:
-                buyFood(exit, selectedAnimal);
+                buyFood(selectedAnimal);
                 break;
         }
     }
 
-    private void buyFood(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+    private void buyFood(AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         personalZooUI.showMessage(String.format("How much %s food would you like? (1 - 3)\r\n[0] Exit", selectedAnimal));
         int selection = personalZooUI.getUserSelection(0,3);
         int foodCost = store.getPriceOfPet(selectedAnimal)/10;
@@ -566,7 +568,7 @@ public class PersonalZooController {
         }
     }
 
-    private void buyEnvironment(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+    private void buyEnvironment(AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         int petCost = store.getPriceOfPet(selectedAnimal);
         int environmentCost = petCost / 2;
         if (newUser.getMoney() - environmentCost < 0) {
@@ -581,7 +583,7 @@ public class PersonalZooController {
         }
     }
 
-    private void buyPet(boolean exit, AnimalTypes.AllAnimals selectedAnimal) throws IOException {
+    private void buyPet(AnimalTypes.AllAnimals selectedAnimal) throws IOException {
         boolean hasEnvironment = checkUserEnvironments(selectedAnimal);
         personalZooUI.showMessage(String.format("Are you sure you would like to purchase a %s for $%d?\r\n[1] yes\r\n[0] no", selectedAnimal, store.getPriceOfPet(selectedAnimal)));
         int selection = personalZooUI.getUserSelection(0,1);
@@ -734,7 +736,11 @@ public class PersonalZooController {
         saveText(newUser);
     }
 
-    public User getUser() {
-        return newUser;
+    public void loadComponents() {
+        personalZooUI = new PersonalZooView();
+        encryptor = new Encryption();
+        date = new Date();
+        store = new Store();
+        day = 86000000;
     }
 }
