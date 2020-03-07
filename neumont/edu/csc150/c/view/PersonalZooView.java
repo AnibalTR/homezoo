@@ -10,19 +10,13 @@ public class  PersonalZooView {
 
     private BufferedReader userIn;
     private String gameTitle =
-                    "⬛\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D" +
-                            "\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D" +
-                            "\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D" +
-                            "\uDD3B\uD83D\uDD3B⬛\r\n" +
-                    "⬛    Welcome To Your Personal Zoo   ⬛\r\n" +
-                    "⬛\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D" +
-                            "\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D" +
-                            "\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D" +
-                            "\uDD3A\uD83D\uDD3A⬛";
+                    "⬛"+"\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B\uD83D\uDD3B"+"⬛\r\n"+
+                    "⬛   Welcome To Your Personal Zoo   ⬛\r\n" +
+                    "⬛"+"\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A\uD83D\uDD3A"+"⬛";
     private String endTagFancyPart ="\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38" +
             "\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38" +
             "\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38" +
-            "\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38";
+            "\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38\uD83D\uDD38";
 
     public PersonalZooView() {
         userIn = new BufferedReader(new InputStreamReader(System.in));
@@ -30,9 +24,9 @@ public class  PersonalZooView {
 
     public void displayMainMenu() throws IOException {
         showMessage( gameTitle + "\r\n"+
-                "\r\n"+"            Press 1 to Login" +
-                "\r\n" +"           Press 2 to Sign up" +
-                "\r\n" +"            To exit press 0\r\n"+"\r\n"+endTagFancyPart);
+                "\r\n"+"           Press 1 to Login" +
+                "\r\n" +"          Press 2 to Sign up" +
+                "\r\n" +"           To exit press 0\r\n"+"\r\n"+endTagFancyPart);
     }
 
     public void displayPlayMenu() {
@@ -191,3 +185,5 @@ public class  PersonalZooView {
         showMessage("User: "+name+"   Cash: "+cash);
     }
 }
+
+// in check time pass add it so it thinks its night time
