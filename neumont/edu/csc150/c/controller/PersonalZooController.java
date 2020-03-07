@@ -62,19 +62,19 @@ public class PersonalZooController {
                 do {
                     if (lastPlayTime < now - (day / 48)) {
                         pet.setAttention(pet.getAttention() - 1);
-                        lastPlayTime -= day;
+                        lastPlayTime += day / 48;
                     } else {
                         petTimeUpdated = true;
                     }
                     if (lastCleaningTime < now - (day / 182)) {
                         pet.setMessiness(pet.getMessiness() - 1);
-                        lastCleaningTime -= day;
+                        lastCleaningTime += day / 182;
                     } else {
                         petFeedUpdated = true;
                     }
                     if (lastFeedingTime < now - (day / 1000)) {
                         pet.setHunger(pet.getHunger() - 1);
-                        lastFeedingTime -= day;
+                        lastFeedingTime += day / 1000;
                     } else {
                         petCleanUpdated = true;
                     }
@@ -85,6 +85,7 @@ public class PersonalZooController {
                 }
                 else
                     pet.setAsleep(true);
+                pet.setStars((pet.getHunger() + pet.getMessiness() + pet.getAttention()) / 6);
             }
         }
     }
