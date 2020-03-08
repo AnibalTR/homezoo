@@ -1,6 +1,7 @@
 package neumont.edu.csc150.c.view;
 
 import neumont.edu.csc150.c.models.AnimalTypes;
+import neumont.edu.csc150.c.models.Store;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,9 +36,6 @@ public class  PersonalZooView {
 
     public void displayCaringMenu(String petName){
         showMessage(String.format("[1] Feed %s\r\n[2] Play With %s\r\n[3] Clean %s\r\n[0] Exit",petName, petName, petName));
-    }
-    public void displayFancyThingy(){
-        showMessage(endTagFancyPart);
     }
 
     public int getUserSelection(int min, int max) throws IOException {
@@ -184,6 +182,7 @@ public class  PersonalZooView {
 //        showMessage(String.format("==== User: %s ==== Cash: %d ====",name,cash));
         showMessage("User: "+name+"   Cash: "+cash);
     }
+
 }
 
 // in check time pass add it so it thinks its night time
