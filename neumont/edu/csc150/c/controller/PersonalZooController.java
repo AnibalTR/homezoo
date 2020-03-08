@@ -16,7 +16,6 @@ public class PersonalZooController {
     private int day;
     private boolean isLoggedIn;
     Timer timer;
-//    private PetChecker pc;
 
     public PersonalZooController() {
         loadComponents();
@@ -62,21 +61,21 @@ public class PersonalZooController {
                 long lastFeedingTime = pet.getLastFeedingTime();
 
                 do {
-                    if (lastPlayTime < now - (day / 48)) {
+                    if (lastPlayTime < now - (day)) {
                         pet.setAttention(pet.getAttention() - 1);
-                        lastPlayTime += day / 48;
+                        lastPlayTime += day;
                     } else {
                         petTimeUpdated = true;
                     }
-                    if (lastCleaningTime < now - (day / 182)) {
+                    if (lastCleaningTime < now - (day)) {
                         pet.setMessiness(pet.getMessiness() - 1);
-                        lastCleaningTime += day / 182;
+                        lastCleaningTime += day;
                     } else {
                         petFeedUpdated = true;
                     }
-                    if (lastFeedingTime < now - (day / 1000)) {
+                    if (lastFeedingTime < now - (day)) {
                         pet.setHunger(pet.getHunger() - 1);
-                        lastFeedingTime += day / 1000;
+                        lastFeedingTime += day;
                     } else {
                         petCleanUpdated = true;
                     }
@@ -88,6 +87,22 @@ public class PersonalZooController {
                 else
                     pet.setAsleep(true);
                 pet.setStars((pet.getHunger() + pet.getMessiness() + pet.getAttention()) / 6);
+
+                if (pet.getAttention() < 1) {
+                    personalZooUI.showError(String.format("%s was not getting enough attention and left to a new family", pet.getName()));
+                } else if (pet.getMessiness() < 1) {
+                    personalZooUI.showError(String.format("%s was not happy with their living situation and left", pet.getName()));
+                } else if (pet.getHunger() < 1) {
+                    personalZooUI.showError(String.format("%s starved to death", pet.getName()));
+                }
+
+                if (pet.getAttention() < 1 || pet.getHunger() < 1 || pet.getMessiness() < 1) {
+                    e.setPet(null);
+                } else {
+                    pet.setStars((pet.getHunger() + pet.getMessiness() + pet.getAttention()) / 6);
+                    int initCost = store.getPriceOfPet(pet.getAnimalType());
+                    newUser.setMoney(newUser.getMoney() + initCost * pet.getStars());
+                }
             }
         }
     }
@@ -103,6 +118,7 @@ public class PersonalZooController {
                 case 0:
                     personalZooUI.showMessage("Saving and Exiting...");
                     saveText(newUser);
+                    newUser = null;
                     leaveGameMenu = true;
                     System.exit(0);
                     break;
@@ -647,7 +663,7 @@ public class PersonalZooController {
         personalZooUI.showMessage(String.format("Please enter a password with a minimum of %d characters", minNameLen));
         String password = personalZooUI.readString(minNameLen);
         String epw = encryptor.encrypt(password);
-        newUser = new User(userName, epw, 100.00, new ArrayList<Environment>(), new ArrayList<Food>());
+        newUser = new User(userName, epw, 500.00, new ArrayList<Environment>(), new ArrayList<Food>());
         saveText(newUser);
         setUserLog();
     }
@@ -750,30 +766,47 @@ public class PersonalZooController {
         store = new Store();
         day = 86000000;
         isLoggedIn = false;
-//        timer.cancel();
         timer = new Timer("Pet-Checker");
-        timer.scheduleAtFixedRate(new PetChecker(), new Date(), 1000);
-//        pc = new PetChecker();
-//        pc.tester(isLoggedIn);
+        timer.scheduleAtFixedRate(new PetChecker(), new Date(), 600000);
     }
-
 
     private class PetChecker extends TimerTask {
         @Override
         public void run() {
             if (isLoggedIn) {
                 for (int i = 0; i < newUser.getEnvironments().size(); i++) {
-//                    Pet pet
-                    if (newUser.getEnvironments().get(i).getPet() != null) {
-//                        newUser.getEnvironments().get(i).getPet().
+                    Pet pet = newUser.getEnvironments().get(i).getPet();
+                    if (pet != null) {
+                        pet.setMessiness(pet.getMessiness() - 1);
+                        pet.setHunger(pet.getHunger() - 1);
+                        pet.setAttention(pet.getAttention() - 1);
+
+                        if (pet.getAttention() < 1) {
+                            personalZooUI.showError(String.format("%s was not getting enough attention and left to a new family", pet.getName()));
+                        } else if (pet.getMessiness() < 1) {
+                            personalZooUI.showError(String.format("%s was not happy with their living situation and left", pet.getName()));
+                        } else if (pet.getHunger() < 1) {
+                            personalZooUI.showError(String.format("%s starved to death", pet.getName()));
+                        }
+
+                        if (pet.getLastSleepTime() % day < day / 12) {
+                            pet.setAsleep(false);
+                            pet.setLastSleepTime(date.getTime() - (pet.getLastSleepTime() % (day / 2)));
+                        }
+                        else
+                            pet.setAsleep(true);
+
+                        if (pet.getAttention() < 1 || pet.getHunger() < 1 || pet.getMessiness() < 1) {
+                            newUser.getEnvironments().get(i).setPet(null);
+                        } else {
+                            pet.setStars((pet.getHunger() + pet.getMessiness() + pet.getAttention()) / 6);
+                            int initCost = store.getPriceOfPet(pet.getAnimalType());
+                            newUser.setMoney(newUser.getMoney() + initCost * pet.getStars());
+                        }
                     }
+
                 }
             }
         }
     }
-
-//    @Override
-//    public void run() {
-//        System.out.println("Hello world");
-//    }
 }

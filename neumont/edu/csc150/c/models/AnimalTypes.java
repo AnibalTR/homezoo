@@ -125,6 +125,4 @@ public class AnimalTypes {
         GREY_PARROT,
         PALLID_PARROT
     }
-
-
 }
