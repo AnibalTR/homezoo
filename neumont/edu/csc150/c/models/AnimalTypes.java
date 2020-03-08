@@ -43,6 +43,7 @@ public class AnimalTypes {
         PIGEON,
         EMPTY
     }
+
     public enum AnimalSpecies {
         REPTILE,
         MAMMAL,
