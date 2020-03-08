@@ -4,11 +4,9 @@ import neumont.edu.csc150.c.models.*;
 import neumont.edu.csc150.c.view.PersonalZooView;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-public class PersonalZooController implements Runnable {
+public class PersonalZooController {
     private final static String usersFolder = "Users";
     private PersonalZooView personalZooUI;
     private Encryption encryptor;
@@ -17,6 +15,8 @@ public class PersonalZooController implements Runnable {
     private User newUser;
     private int day;
     private boolean isLoggedIn;
+    Timer timer;
+//    private PetChecker pc;
 
     public PersonalZooController() {
         loadComponents();
@@ -750,11 +750,30 @@ public class PersonalZooController implements Runnable {
         store = new Store();
         day = 86000000;
         isLoggedIn = false;
-        run();
+//        timer.cancel();
+        timer = new Timer("Pet-Checker");
+        timer.scheduleAtFixedRate(new PetChecker(), new Date(), 1000);
+//        pc = new PetChecker();
+//        pc.tester(isLoggedIn);
     }
 
-    @Override
-    public void run() {
-        
+
+    private class PetChecker extends TimerTask {
+        @Override
+        public void run() {
+            if (isLoggedIn) {
+                for (int i = 0; i < newUser.getEnvironments().size(); i++) {
+//                    Pet pet
+                    if (newUser.getEnvironments().get(i).getPet() != null) {
+//                        newUser.getEnvironments().get(i).getPet().
+                    }
+                }
+            }
+        }
     }
+
+//    @Override
+//    public void run() {
+//        System.out.println("Hello world");
+//    }
 }
