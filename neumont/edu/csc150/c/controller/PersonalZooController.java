@@ -358,6 +358,7 @@ public class PersonalZooController implements Runnable {
         do{
             personalZooUI.showMessage("======= Parrots =======");
             personalZooUI.displayParrotsClass();
+
             int selection = personalZooUI.getUserSelection(0, AnimalTypes.ParrotSpecies.values().length);
             AnimalTypes.AllAnimals selectedAnimal = null;
             if (selection != 0){
